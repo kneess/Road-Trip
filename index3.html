@@ -77,16 +77,16 @@
 
                     for (var i = 0; i < 10; i++) {
                         var placeId = results[i].place_id;
-                        console.log(placeId)
+                        // console.log(placeId)
                         var restDiv = $("<div class='item'>");
                         var restName = results[i].name;
                         var restAddress = results[i].formatted_address;
                         var rating = results[i].rating;
-                        var hours = results[i].opening_hour; s;
-                        var photo = $("<img>");
-                        var icon = $("<img>");
-                        icon.attr("src", results[i].icon)
-                        photo.attr("src", results[i].photos[0])
+                        // var hours = results[i].opening_hour; s;
+                        // var photo = $("<img>");
+                        // var icon = $("<img>");
+                        // icon.attr("src", results[i].icon)
+                        // photo.attr("src", results[i].photos[0])
                         var p = $("<a>").text(restName);
                         p.attr("href", "page2.html")
                         // var p2 = $("<p>").text(photo);
