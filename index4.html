@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<head>
+    <title> Surprise Me Travel</title>
+    <!-- <script src= "MDB Free/js/mdb.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
+
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <form>
+                    <span id="yourCity">Your City:
+                        <br>
+                        <input id="destination" type="text">
+                        <br>
+
+                        <div class="form-check">
+
+                            <input id="submit" value="Submit" type="submit">
+                        </div>
+                    </span>
+                </form>
+            </div>
+            <div class="col-6">
+                <span id="yourCity">Your City:
+                    <br>
+                    <input id="destination2" type="text">
+                    <br>
+                    <input id="surpriseSubmit" value="Surprise Me!" type="submit">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div id="results"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        //This is the regular button that will list 10 restaurants, 10 things to do, and 10 hotel accomodations
+        $(document).ready(function () {
+
+            $(document).on("click", "#submit", function (event) {
+                event.preventDefault();
+                var destination = $("#destination").val().trim();
+                console.log(destination);
+  
+                var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=hotels+in+" + destination + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
+                $.ajax({
+                    url: queryURL,
+                    method: "GET"
+                }).then(function (response) {
+                    var results = response.results;
+                    console.log(response);
+                    for (var i = 0; i < 10; i++) {
+                        var placeId = results[i].place_id;
+                        // console.log(placeId)
+                        var restDiv = $("<div class='item'>");
+                        var restName = results[i].name;
+                        var restAddress = results[i].formatted_address;
+                        var rating = results[i].rating;
+                        // var hours = results[i].opening_hour; s;
+                        // var photo = $("<img>");
+                        // var icon = $("<img>");
+                        // icon.attr("src", results[i].icon)
+                        // photo.attr("src", results[i].photos[0])
+                        var p = $("<a>").text(restName);
+                        p.attr("href", "page2.html")
+                        // var p2 = $("<p>").text(photo);
+                        var p3 = $("<p>").text(rating);
+                        var p4 = $("<p>").text(restAddress);
+                        // var p5 = $("<p>").text(hours);
+                        p.addClass("p");
+                        restDiv.prepend(p3);
+                        restDiv.prepend(p4);
+                        restDiv.prepend(p);
+                        $("#results").prepend(restDiv);
+                    }
+                    $(document).on("click", ".p", function (event) {
+                        event.preventDefault();
+                        var queryURL2 = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeId + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
+                        $.ajax({
+                            url: queryURL2,
+                            method: "GET"
+                        }).then(function (response2) {
+                            var results2 = response2.results;
+                            console.log(results2);
+
+                        })
+                    });
+                });
+            });
+
+        });

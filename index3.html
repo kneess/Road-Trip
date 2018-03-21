@@ -66,15 +66,14 @@
                 event.preventDefault();
                 var destination = $("#destination").val().trim();
                 console.log(destination);
-
-                var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+" + destination + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
+  
+                var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=things to do+in+" + destination + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
                 $.ajax({
                     url: queryURL,
                     method: "GET"
                 }).then(function (response) {
                     var results = response.results;
-                    console.log(results);
-
+                    console.log(response);
                     for (var i = 0; i < 10; i++) {
                         var placeId = results[i].place_id;
                         // console.log(placeId)
@@ -99,22 +98,22 @@
                         restDiv.prepend(p);
                         $("#results").prepend(restDiv);
                     }
+                    $(document).on("click", ".p", function (event) {
+                        console.log(placeId);
+                        event.preventDefault();
+                        var queryURL2 = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeId + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
+                        $.ajax({
+                            url: queryURL2,
+                            method: "GET"
+                        }).then(function (response2) {
+                            var results2 = response2.results;
+                            console.log(response2);
 
-
+                        })
+                    });
                 });
             });
 
-                    //             $(document).on("click", ".p", function (event) {
-                    //     var queryURL2 = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeId + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
-                    //     $.ajax({
-                    //         url: queryURL2,
-                    //         method: "GET"
-                    //     }).then(function (response2) {
-                    //         var results2 = response2.results;
-                    //         console.log(results2);
-
-                    //     })
-                    // })
         });
                         //                     var destination = $("#destination").val().trim();
                         //                     console.log(destination);
