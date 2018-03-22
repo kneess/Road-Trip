@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<head>
+    <title>
+        google places
+    </title>
+</head>
+
+<body>
+    <div id="searchbar">
+        <input id="enterLocation" type="text" placeholder="search">
+        <button id="submitLocation">submit</button>
+    </div>
+    <div id="results">Results go here</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+
+
+        $("#submitLocation").on("click", function () {
+            var location = $("#enterLocation").val().trim();
+            $("#enterLocation").val("");
+            console.log(location);
+            var apikey = "AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
+            var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=museums+in+" + location + "&key=" + apikey;
+
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+                console.log(response.results);
+                var results = response.results;
+                for (var i = 0; i < results.length; i++) {
+                    var newDiv = $("<div>");
+                    newDiv.addClass("properties");
+                    ////var newImg = $("<img>");
+                    //newImg.attr("src", results[i].photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100}));
+                    var p = $("<p>").text(results[i].name);
+                    p.addClass("museumClick");
+                    p.attr("place-id", results[i].place_id);
+                    var p2 = $("<p>").text(results[i].formatted_address);
+                    newDiv.append(p);
+                    //newDiv.append(newImg);
+                    newDiv.append(p2);
+                    $("#results").append(newDiv);
+                }
+
+                $("#results").on("click", ".museumClick", function () {
+
+                    var placeid = $(this).attr("place-id");
+                    console.log(placeid);
+                    $(".properties").hide();
+
+                    var queryURL2 = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeid + "&key=" + apikey;
+
+                    $.ajax({
+                        url: queryURL2,
+                        method: "GET"
+                    }).then(function (response2) {
+                        console.log(response2);
+                        var results2 = response2.result;
+                        //console.log(results2.formatted_phone_number);
+                        var newDiv = $("<div>");
+                        newDiv.addClass("properties2");
+                        var p = $("<p>").text("Museum Name: " + results2.name);
+                        var p1 = $("<p>").text("Address: " + results2.formatted_address);
+                        var p2 = $("<p>").text("Phone Number: " + results2.formatted_phone_number);
+                        var p3 = $("<p>").text("Website: " + results2.website);
+                        var img = $("<img>");
+                        img.attr("src", results2.url);
+                        newDiv.append(p);
+                        newDiv.append(p1);
+                        newDiv.append(p2);
+                        newDiv.append(p3);
+                        newDiv.append(img);
+                        $("#results").append(newDiv);
+
+                    })
+
+                })
+            });
+        });
+
+
+    </script>
+
+</body>
+
+</html>
