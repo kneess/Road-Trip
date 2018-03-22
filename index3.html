@@ -61,7 +61,7 @@
             </div>
             <div class="col-4">
                 <div id="toDoResults"></div>
-                <div id="toDospecs"></div>
+                <div id="toDoSpecs"></div>
             </div>
         </div>
     </div>
@@ -161,12 +161,12 @@
                             hotelDiv.attr("data", placeId2);
                             var hotelName = hResults[i].name;
                             var hotelAddress = hResults[i].formatted_address;
-                            var hRating = hResults[i].rating;
+                            var hotelRating = hResults[i].rating;
                             // var hPhoto = $("<img>");
                             // hPhoto.attr("src", hResults[i].photos[0])
                             var hp = $("<p>").text(hotelName);
                             // var hp2 = $("<p>").text(hPhoto);
-                            var hp3 = $("<p>").text(hRating);
+                            var hp3 = $("<p>").text(hotelRating);
                             var hp4 = $("<p>").text(hotelAddress);
                             // var hp5 = $("<p>").text(hHours);
                             // hp.addClass("hp");
@@ -219,73 +219,72 @@
                         });
                     });
 //this will be the ajax call for "things to do"
-                    var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=hotel+in+" + destination + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
+                    var queryURL4 = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=things to do+in+" + destination + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
                     $.ajax({
-                        url: queryURL,
+                        url: queryURL4,
                         method: "GET"
-                    }).then(function (hotelResponse) {
-                        var hResults = hotelResponse.results;
-                        console.log(hResults);
-                        for (var i = 0; i < hResults.length; i++) {
-                            var placeId2 = hResults[i].place_id;
-                            var hotelDiv = $("<button class='hotel'>");
-                            hotelDiv.attr("data", placeId2);
-                            var hotelName = hResults[i].name;
-                            var hotelAddress = hResults[i].formatted_address;
-                            var hRating = hResults[i].rating;
+                    }).then(function (thingsResponse) {
+                        var tResults = thingsResponse.results;
+                        console.log(tResults);
+                        for (var i = 0; i < tResults.length; i++) {
+                            var placeId3 = tResults[i].place_id;
+                            var thingsDiv = $("<button class='things'>");
+                            thingsDiv.attr("data", placeId3);
+                            var thingsName = tResults[i].name;
+                            var thingsAddress = tResults[i].formatted_address;
+                            var thingsRating = tResults[i].rating;
                             // var hPhoto = $("<img>");
                             // hPhoto.attr("src", hResults[i].photos[0])
-                            var hp = $("<p>").text(hotelName);
+                            var tp = $("<p>").text(thingsName);
                             // var hp2 = $("<p>").text(hPhoto);
-                            var hp3 = $("<p>").text(hRating);
-                            var hp4 = $("<p>").text(hotelAddress);
+                            var tp3 = $("<p>").text(thingsRating);
+                            var tp4 = $("<p>").text(thingsAddress);
                             // var hp5 = $("<p>").text(hHours);
                             // hp.addClass("hp");
                             // hotelDiv.append(hp5);
-                            hotelDiv.prepend(hp4);
-                            hotelDiv.prepend(hp3);
+                            thingsDiv.prepend(tp4);
+                            thingsDiv.prepend(tp3);
                             // hotelDiv.prepend(hp2);
-                            hotelDiv.prepend(hp);
-                            $("#hotelResults").prepend(hotelDiv);
+                            thingsDiv.prepend(tp);
+                            $("#toDoResults").prepend(thingsDiv);
                         }
 
-                        $(document).on("click", ".hotel", function (event) {
-                            var id2 = $(this).attr("data");
-                            console.log(id2);
-                            console.log(placeId2);
+                        $(document).on("click", ".things", function (event) {
+                            var id3 = $(this).attr("data");
+                            console.log(id3);
                             event.preventDefault();
-                            var queryURL3 = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + id2 + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
+                            var queryURL5 = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + id3 + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
                             $.ajax({
-                                url: queryURL3,
+                                url: queryURL5,
                                 method: "GET"
-                            }).then(function (response3) {
-                                var results3 = response3.result;
-                                console.log(results3);
-                                var detailsDiv2 = $("<div class='details2'>");
-                                var hName = results3.name;
-                                var hAddress = results3.formatted_address;
-                                var hRating = results3.rating;
+                            }).then(function (response5) {
+                                var results5 = response5.result;
+                                console.log(results5);
+                                var detailsDiv3 = $("<div class='details3'>");
+                                var tName = results5.name;
+                                var tAddress = results5.formatted_address;
+                                var tRating = results5.rating;
                                 // var photo3 = $("<img>");
                                 // photo3.attr("src", results3[i].photos[0].html_attributions[0]);
-                                var hHours = results3.opening_hours.weekday_text;
-                                var hWebsite = results3.website;
-                                var hPhone = results3.formatted_phone_number;
-                                $("#hotelResults").hide();
-                                var hp7 = $("<p>").text("Name: " + hName);
-                                var hp8 = $("<p>").text("Rating: " + hRating);
-                                var hp9 = $("<p>").text("Address: " + hAddress);
-                                var hp5 = $("<p>").text("Hours: " + hHours);
-                                var hp6 = $("<p>").text("Phone Number: " + hPhone);
+                                var tHours = results5.opening_hours.weekday_text;
+                                var tWebsite = results5.website;
+                                var tPhone = results5.formatted_phone_number;
+                                $("#toDoResults").hide();
+                                var tp7 = $("<p>").text("Name: " + tName);
+                                var tp8 = $("<p>").text("Rating: " + tRating);
+                                var tp9 = $("<p>").text("Address: " + tAddress);
+                                var tp5 = $("<p>").text("Hours: " + tHours);
+                                var tp6 = $("<p>").text("Phone Number: " + tPhone);
                                 // var p = $("<a>").text(website);
-                                var hp2 = $("<a>").text(hName);
-                                hp2.attr("href", hWebsite)
-                                detailsDiv2.prepend(hp5);
-                                detailsDiv2.prepend(hp8);
-                                detailsDiv2.prepend(hp6);
-                                detailsDiv2.prepend(hp9);
+                                var tp2 = $("<a>").text(tName);
+                                tp2.attr("href", tWebsite)
+                                detailsDiv3.prepend(tp5);
+                                detailsDiv3.prepend(tp8);
+                                detailsDiv3.prepend(tp6);
+                                detailsDiv3.prepend(tp9);
                                 // detailsDiv2.prepend(photo3);
-                                detailsDiv2.prepend(hp2);
-                                $("#hotelSpecs").prepend(detailsDiv2);
+                                detailsDiv3.prepend(tp2);
+                                $("#toDoSpecs").prepend(detailsDiv3);
                             })
                         });
                     });
