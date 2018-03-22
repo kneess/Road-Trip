@@ -53,6 +53,7 @@
         <div class="row">
             <div class="col-12">
                 <div id="results"></div>
+                <div id="specs"></div>
             </div>
         </div>
     </div>
@@ -77,17 +78,17 @@
                     for (var i = 0; i < 10; i++) {
                         var placeId = results[i].place_id;
                         // console.log(placeId)
-                        var restDiv = $("<div class='item'>");
+                        var restDiv = $("<button class='item'>");
                         var restName = results[i].name;
                         var restAddress = results[i].formatted_address;
                         var rating = results[i].rating;
-                        // var hours = results[i].opening_hour; s;
+                        
                         // var photo = $("<img>");
                         // var icon = $("<img>");
                         // icon.attr("src", results[i].icon)
                         // photo.attr("src", results[i].photos[0])
-                        var p = $("<a>").text(restName);
-                        p.attr("href", "page2.html")
+                        var p = $("<p>").text(restName);
+                        
                         // var p2 = $("<p>").text(photo);
                         var p3 = $("<p>").text(rating);
                         var p4 = $("<p>").text(restAddress);
@@ -98,7 +99,7 @@
                         restDiv.prepend(p);
                         $("#results").prepend(restDiv);
                     }
-                    $(document).on("click", ".p", function (event) {
+                    $(document).on("click", ".item", function (event) {
                         console.log(placeId);
                         event.preventDefault();
                         var queryURL2 = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeId + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
@@ -106,8 +107,24 @@
                             url: queryURL2,
                             method: "GET"
                         }).then(function (response2) {
-                            var results2 = response2.results;
-                            console.log(response2);
+                            var results2 = response2.result;
+                            console.log(results2);
+                            var detailsDiv = $("<div class='details'>");
+                            var hours = results2.opening_hours.weekday_text;
+                            var website = results2.website;
+                            var phone = results2.formatted_phone_number;
+                            $("#results").hide();
+                            var p5 = $("<p>").text(hours);
+                            var p6 = $("<p>").text(phone);
+                            // var p = $("<a>").text(website);
+                            var p2 = $("<a>").text(restName);
+                            p2.attr("href", website)
+                            detailsDiv.prepend(p5);
+                            detailsDiv.prepend(p3);
+                            detailsDiv.prepend(p6);
+                            detailsDiv.prepend(p4);
+                            detailsDiv.prepend(p2);
+                            $("#specs").prepend(detailsDiv);
 
                         })
                     });
