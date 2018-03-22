@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <head>
-    <title> Surprise Me Travel</title>
+    <title>Test</title>
     <!-- <script src= "MDB Free/js/mdb.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
@@ -52,7 +52,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <div id="results"></div>
+                <div id="hotelResults"></div>
             </div>
         </div>
     </div>
@@ -63,54 +63,44 @@
         $(document).ready(function () {
 
             $(document).on("click", "#submit", function (event) {
-                event.preventDefault();
-                var destination = $("#destination").val().trim();
-                console.log(destination);
-  
-                var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=hotels+in+" + destination + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
-                $.ajax({
-                    url: queryURL,
-                    method: "GET"
-                }).then(function (response) {
-                    var results = response.results;
-                    console.log(response);
-                    for (var i = 0; i < 10; i++) {
-                        var placeId = results[i].place_id;
-                        // console.log(placeId)
-                        var restDiv = $("<div class='item'>");
-                        var restName = results[i].name;
-                        var restAddress = results[i].formatted_address;
-                        var rating = results[i].rating;
-                        // var hours = results[i].opening_hour; s;
-                        // var photo = $("<img>");
-                        // var icon = $("<img>");
-                        // icon.attr("src", results[i].icon)
-                        // photo.attr("src", results[i].photos[0])
-                        var p = $("<a>").text(restName);
-                        p.attr("href", "page2.html")
-                        // var p2 = $("<p>").text(photo);
-                        var p3 = $("<p>").text(rating);
-                        var p4 = $("<p>").text(restAddress);
-                        // var p5 = $("<p>").text(hours);
-                        p.addClass("p");
-                        restDiv.prepend(p3);
-                        restDiv.prepend(p4);
-                        restDiv.prepend(p);
-                        $("#results").prepend(restDiv);
-                    }
-                    $(document).on("click", ".p", function (event) {
                         event.preventDefault();
-                        var queryURL2 = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeId + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
+                        var destination = $("#destination").val().trim();
+                        console.log(destination);
+                        var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=hotel+in+" + destination + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
                         $.ajax({
-                            url: queryURL2,
+                            url: queryURL,
                             method: "GET"
-                        }).then(function (response2) {
-                            var results2 = response2.results;
-                            console.log(results2);
+                        }).then(function (hotelResponse) {
+                            var hResults = hotelResponse.results;
+                            console.log(hResults);
+                            for (var i = 0; i <hResults.length; i++) {
+                                var hotelDiv = $("<div class='hotel'>");
+                                var hotelName = hResults[i].name;
+                                var hotelAddress = hResults[i].formatted_address;
+                                var hRating = hResults[i].rating;
+                                // var hHours = hResults[i].opening_hours;
+                                // var hPhoto = $("<img>");
+                                // hPhoto.attr("src", hResults[i].photos[0])
+                                var hp = $("<p>").text(hotelName);
+                                // var hp2 = $("<p>").text(hPhoto);
+                                var hp3 = $("<p>").text(hRating);
+                                var hp4 = $("<p>").text(hotelAddress);
+                                // var hp5 = $("<p>").text(hHours);
+                                // hp.addClass("hp");
+                                // hotelDiv.append(hp5);
+                                hotelDiv.prepend(hp4);
+                                hotelDiv.prepend(hp3);
+                                // hotelDiv.prepend(hp2);
+                                hotelDiv.prepend(hp);
+                                $("#hotelResults").prepend(hotelDiv);
+                            }
 
-                        })
+                        });
                     });
-                });
-            });
 
-        });
+                });
+            </script>
+
+</body>
+
+</html>
