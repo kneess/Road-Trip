@@ -59,15 +59,19 @@
                     }).then(function (response2) {
                         console.log(response2);
                         var results2 = response2.result;
+                        var photoreference = results2.reference;
+                        var url = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference='+photoreference+'&key'+apikey;
+                        console.log(photoreference);
                         //console.log(results2.formatted_phone_number);
                         var newDiv = $("<div>");
                         newDiv.addClass("properties2");
                         var p = $("<p>").text("Museum Name: " + results2.name);
                         var p1 = $("<p>").text("Address: " + results2.formatted_address);
                         var p2 = $("<p>").text("Phone Number: " + results2.formatted_phone_number);
-                        var p3 = $("<p>").text("Website: " + results2.website);
+                        var p3 = $("<a>").text("Website: "+ results2.website);
+                        p3.attr("href", results2.website)
                         var img = $("<img>");
-                        img.attr("src", results2.url);
+                        img.attr("src", url);
                         newDiv.append(p);
                         newDiv.append(p1);
                         newDiv.append(p2);
