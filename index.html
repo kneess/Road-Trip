@@ -1,211 +1,68 @@
-<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <title> Surprise Me Travel</title>
-    <!-- <script src= "MDB Free/js/mdb.js"></script> -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
-
-
-    <!-- JQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Road Trip</title>
+    <!-- Media Query -->
+    <meta  name="viewport" content="width=device-width,initial-scale=1">
+    <!-- Reset CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Google Fonts -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Flavors" rel="stylesheet"> -->
+    <!-- My CSS --> 
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css"> 
 
 </head>
-
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-6">
-                <form>
-                    <span id="yourCity">Your City:
-                        <br>
-                        <input id="destination" type="text">
-                        <br>
-
-                        <!-- <div class="dropdown">
-                        Trigger-->
-                        <!-- <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose an Activity</button>
-                         -->
-                        <!--Menu-->
-                        <!-- <div class="dropdown-menu dropdown-primary">
-                            <a class="dropdown-item" href="#">Hiking</a>
-                            <a class="dropdown-item" href="#">Running</a>
-                            <a class="dropdown-item" href="#">Baseball</a>
-                            <a class="dropdown-item" href="#">Crafts</a>
+    <!--this is the wrapper that holds the background image-->
+    <div class="wrapper" align="center">
+        <div class="container">
+            <!-- row 1 Jumbotron Header-->    
+            <div class="row">
+                    <div class="card">
+                        <div class="card-body">
                         </div>
-                    </div> -->
-
-                        <div class="form-check">
-                            <input type="checkbox" class="filled-in form-check-input" id="checkbox101">
-                            <label class="form-check-label" for="checkbox101">Hiking</label>
-                            <br>
-                            <input type="checkbox" class="filled-in form-check-input" id="checkbox102">
-                            <label class="form-check-label" for="checkbox101">Running</label>
-                            <br>
-                            <input type="checkbox" class="filled-in form-check-input" id="checkbox103">
-                            <label class="form-check-label" for="checkbox101">Baseball</label>
-                            <br>
-                            <input type="checkbox" class="filled-in form-check-input" id="checkbox104">
-                            <label class="form-check-label" for="checkbox101">Crafts</label>
-                            <br>
-                            <input id="submit" value="Submit" type="submit">
-                        </div>
-                    </span>
-                </form>
-            </div>
-            <div class="col-6">
-                <span id="yourCity">Your City:
-                    <br>
-                    <input id="destination2" type="text">
-                    <br>
-                    <input id="surpriseSubmit" value="Surprise Me!" type="submit">
+                        <img class="card-img-bottom" src="./images/jumbotron_bkg.png" alt="Card image cap">
+                    </div>    
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <div id="results"></div>
+            <!-- row 2 -->
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <form>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Where would you like to go?</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Destination City">
+                        </div>
+                    </form>
+                </div>
             </div>
+            <!-- row 3 -->
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    </div>
+                </div>
+                <div class="row justify-content-around">
+                  <div class="col-4">
+                        <button class="btn btn-primary" id="destinationCity" type="button">Browse Items</button>
+                  </div>
+                  <div class="col-4">
+                        <button class="btn btn-primary" id="destinationCity" type="button">Surprise Me</button>
+                  </div>
+                </div>
+   
+                  </div>
+                </div>
+                </div>
+            </div>
+                
         </div>
+
+
+
     </div>
-
-
-    <script>
-        //This is the regular button that will list 10 restaurants, 10 things to do, and 10 hotel accomodations
-        $(document).ready(function () {
-
-            $(document).on("click", "#submit", function (event) {
-                event.preventDefault();
-                if ($(".filled-in form-check-input").is(":checked")) {
-                    var checkboxValue = $(this).text();
-                    console.log(checkboxValue);
-                } else { console.log("error") };
-
-                var destination = $("#destination").val().trim();
-                console.log(destination);
-
-                var apiKey = "ycnepqze277jjgemf6hc4gyd";
-                // http://api.amp.active.com/v2/search/?city=Denver&query=hiking&current_page=1&per_page=10&sort=distance&exclude_children=false&api_key=ycnepqze277jjgemf6hc4gyd";
-                var queryURL = "http://api.amp.active.com/v2/search/?query=" + "hiking" + "&city=" + destination + "&api_key=ycnepqze277jjgemf6hc4gyd";
-                $.ajax({
-                    url: queryURL,
-                    method: "GET"
-                }).then(function (response) {
-                    var results = response.results;
-                    console.log(results);
-
-                    for (var i = 0; i < results.length; i++) {
-                        var toDoDiv = $("<div class='item'>");
-                        var toDoURL = results[i].registrationUrlAdr;
-                        var logo = $("<img>");
-                        logo.attr("src", results[i].logoUrlAdr);
-                        var p = $("<p>").text("More Info: " + toDoURL);
-                        p.addClass("p");
-                        var toDo = results[i].assetName;
-                        toDoDiv.append(p);
-                        toDoDiv.prepend(toDo);
-                        toDoDiv.prepend(logo);
-                        $("#results").prepend(toDoDiv);
-                    }
-                });
-            });
-        });
-
-        //this is the "suprise me" button
-        //make 3 arrays- 1 for each: restaurant, hotel, thing to do
-        //lots of ajax calls....  all push to the correct array
-        //grab a random item from each array and display it to the DOM
-
-        $(document).on("click", "#surpriseSubmit", function (event) {
-            event.preventDefault();
-
-            var destination2 = $("#destination2").val().trim();
-            console.log(destination2);
-
-            var restArray = [];
-            var hotelArray = [];
-            var thingsToDoArray = [];
-
-            //Things to do:
-            var queryURL = "http://api.amp.active.com/v2/search/?query=hiking&city=" + destination2 + "&api_key=ycnepqze277jjgemf6hc4gyd";
-            $.ajax({
-                url: queryURL,
-                method: "GET"
-            }).then(function (response) {
-                var results = response.results;
-                console.log(results);
-
-                for (var i = 0; i < results.length; i++) {
-
-                    var toDoURL = results[i].registrationUrlAdr;
-                    var logo = $("<img>");
-                    logo.attr("src", results[i].logoUrlAdr);
-                    var p = $("<p>").text("More Info: " + toDoURL);
-                    p.addClass("p");
-                    var toDo = results[i].assetName;
-                    var toDoObj = {
-                        "Thing to Do: ": toDo,
-                        "URL: ": toDoURL,
-                        "Logo: ": logo
-                    };
-                    thingsToDoArray.push(toDoObj);
-                };
-
-                var queryURL = "http://api.amp.active.com/v2/search/?query=baseball&city=" + destination2 + "&api_key=ycnepqze277jjgemf6hc4gyd";
-                $.ajax({
-                    url: queryURL,
-                    method: "GET"
-                }).then(function (response) {
-                    var results = response.results;
-                    console.log(results);
-
-                    for (var i = 0; i < results.length; i++) {
-
-                        var toDoURL = results[i].registrationUrlAdr;
-                        var logo = $("<img>");
-                        logo.attr("src", results[i].logoUrlAdr);
-                        var p = $("<p>").text("More Info: " + toDoURL);
-                        p.addClass("p");
-                        var toDo = results[i].assetName;
-                        var toDoObj = {
-                            "Thing to Do: ": toDo,
-                            "URL: ": toDoURL,
-                            "Logo: ": logo
-                        };
-                        thingsToDoArray.push(toDoObj);
-                    };
-
-                    console.log(thingsToDoArray);
-
-                });
-                var random = thingsToDoArray[Math.floor(Math.random() * thingsToDoArray.length)];
-                console.log(random);
-        
-                $("#results").append(JSON.stringify(random));
-                // $("#results").append(random.toDo);
-                // $("#results").append(random.toDoURL);
-                // $("#results").append(random.logo);
-            });
-        });
-
-
-    </script>
-
 </body>
-
 </html>
-
-<!-- assetName
-registrationUrlAdr -->
+>>>>>>> abc4698200f7cb87798336f8bd96aa81367c7219

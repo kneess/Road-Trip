@@ -90,19 +90,12 @@
                         var restName = results[i].name;
                         var restAddress = results[i].formatted_address;
                         var rating = results[i].rating;
-                        // var photo = $("<img>");
-                        // var icon = $("<img>");
-                        // icon.attr("src", results[i].icon)
-                        // photo.attr("src", results[i].photos[0].html_attributions);
                         var p = $("<p>").text("Name: " + restName);
-                        // var p2 = $("<p>").text(photo);
                         var p3 = $("<p>").text("Rating: " + rating);
                         var p4 = $("<p>").text("Address: " + restAddress);
-                        // var p5 = $("<p>").text(hours);
                         p.addClass("p");
                         restDiv.prepend(p3);
                         restDiv.prepend(p4);
-                        // restDiv.prepend(photo);
                         restDiv.prepend(p);
                         $("#results").prepend(restDiv);
                     }
@@ -119,15 +112,17 @@
                             var results2 = response2.result;
                             console.log(results2);
                             var detailsDiv = $("<div class='details'>");
-                            // var photo2 = $("<img>");
-                            // photo2.attr("src", results2[i].photos[0].html_attributions[0]);
                             var rName = results2.name;
                             var rAddress = results2.formatted_address;
                             var rRating = results2.rating;
                             var hours = results2.opening_hours.weekday_text;
                             var website = results2.website;
                             var phone = results2.formatted_phone_number;
+                            var photo = $("<img>");
+                            var photoReference = results2.photos[0].photo_reference;
+                            var url = "https://maps.googleapis.com/maps/api/place/photo?photoreference=" + photoReference + "&sensor=false&maxheight=400&maxwidth=400&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
                             $("#results").hide();
+                            photo.attr("src", url);
                             var p7 = $("<p>").text("Name: " + rName);
                             var p8 = $("<p>").text("Rating: " + rRating);
                             var p9 = $("<p>").text("Address: " + rAddress);
@@ -140,14 +135,14 @@
                             detailsDiv.prepend(p8);
                             detailsDiv.prepend(p6);
                             detailsDiv.prepend(p9);
-                            // detailsDiv.prepend(photo2);
+                            detailsDiv.prepend(photo);
                             detailsDiv.prepend(p2);
                             $("#specs").prepend(detailsDiv);
 
                         })
                     });
 
-                    //This isthe ajax request for hotels
+                    //This is the ajax request for hotels
                     var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=hotel+in+" + destination + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
                     $.ajax({
                         url: queryURL,
@@ -162,18 +157,11 @@
                             var hotelName = hResults[i].name;
                             var hotelAddress = hResults[i].formatted_address;
                             var hotelRating = hResults[i].rating;
-                            // var hPhoto = $("<img>");
-                            // hPhoto.attr("src", hResults[i].photos[0])
                             var hp = $("<p>").text(hotelName);
-                            // var hp2 = $("<p>").text(hPhoto);
                             var hp3 = $("<p>").text(hotelRating);
                             var hp4 = $("<p>").text(hotelAddress);
-                            // var hp5 = $("<p>").text(hHours);
-                            // hp.addClass("hp");
-                            // hotelDiv.append(hp5);
                             hotelDiv.prepend(hp4);
                             hotelDiv.prepend(hp3);
-                            // hotelDiv.prepend(hp2);
                             hotelDiv.prepend(hp);
                             $("#hotelResults").prepend(hotelDiv);
                         }
@@ -194,8 +182,10 @@
                                 var hName = results3.name;
                                 var hAddress = results3.formatted_address;
                                 var hRating = results3.rating;
-                                // var photo3 = $("<img>");
-                                // photo3.attr("src", results3[i].photos[0].html_attributions[0]);
+                                var photo2 = $("<img>");
+                                var photoReference2 = results3.photos[0].photo_reference;
+                                var url = "https://maps.googleapis.com/maps/api/place/photo?photoreference=" + photoReference2 + "&sensor=false&maxheight=400&maxwidth=400&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
+                                photo2.attr("src", url);
                                 var hHours = results3.opening_hours.weekday_text;
                                 var hWebsite = results3.website;
                                 var hPhone = results3.formatted_phone_number;
@@ -212,13 +202,13 @@
                                 detailsDiv2.prepend(hp8);
                                 detailsDiv2.prepend(hp6);
                                 detailsDiv2.prepend(hp9);
-                                // detailsDiv2.prepend(photo3);
+                                detailsDiv2.prepend(photo2);
                                 detailsDiv2.prepend(hp2);
                                 $("#hotelSpecs").prepend(detailsDiv2);
                             })
                         });
                     });
-//this will be the ajax call for "things to do"
+                    //this will be the ajax call for "things to do"
                     var queryURL4 = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=things to do+in+" + destination + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
                     $.ajax({
                         url: queryURL4,
@@ -264,8 +254,10 @@
                                 var tName = results5.name;
                                 var tAddress = results5.formatted_address;
                                 var tRating = results5.rating;
-                                // var photo3 = $("<img>");
-                                // photo3.attr("src", results3[i].photos[0].html_attributions[0]);
+                                var photo3 = $("<img>");
+                                var photoReference3 = results5.photos[0].photo_reference;
+                                var url = "https://maps.googleapis.com/maps/api/place/photo?photoreference=" + photoReference3 + "&sensor=false&maxheight=400&maxwidth=400&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
+                                photo3.attr("src", url);
                                 var tHours = results5.opening_hours.weekday_text;
                                 var tWebsite = results5.website;
                                 var tPhone = results5.formatted_phone_number;
@@ -282,7 +274,7 @@
                                 detailsDiv3.prepend(tp8);
                                 detailsDiv3.prepend(tp6);
                                 detailsDiv3.prepend(tp9);
-                                // detailsDiv2.prepend(photo3);
+                                detailsDiv3.prepend(photo3);
                                 detailsDiv3.prepend(tp2);
                                 $("#toDoSpecs").prepend(detailsDiv3);
                             })
