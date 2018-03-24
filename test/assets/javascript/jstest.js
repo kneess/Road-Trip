@@ -41,6 +41,9 @@ $(document).ready(function () {
                 }
                 hotelResults.push(hotelObj);
                 console.log(hotelResults);
+                // pass in results array and string that is the name of the html element we are appending to
+                renderResults(hotelResults, "hotelResults");
+                
             };
           
 
@@ -99,35 +102,38 @@ $(document).ready(function () {
         });
                 //RESTAURANT
                
-                    // var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurant+" + destination + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
-                    // $.ajax({
-                    //     url: queryURL,
-                    //     method: "GET"
-                    // }).then(function (response) {
-                    //     var results = response.results;
-                    //     console.log(results);
-                    //     for (var i = 0; i < 10; i++) {
-                    //         var placeId = results[i].place_id;
-                    //         var restDiv = $("<button class='item'>");
-                    //         restDiv.attr("data", placeId);
-                    //         var restName = results[i].name;
-                    //         var restAddress = results[i].formatted_address;
-                    //         var rating = results[i].rating;
-                    //         var p = $("<p>").text("Name: " + restName);
-                    //         var p3 = $("<p>").text("Rating: " + rating);
-                    //         var p4 = $("<p>").text("Address: " + restAddress);
-                    //         p.addClass("p");
-                    //         restDiv.prepend(p3);
-                    //         restDiv.prepend(p4);
-                    //         restDiv.prepend(p);
+                    var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurant+" + destination + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
+                    $.ajax({
+                        url: queryURL,
+                        method: "GET"
+                    }).then(function (response) {
+                        var results = response.results;
+                        console.log(results);
+                        for (var i = 0; i < 10; i++) {
+                            var placeId = results[i].place_id;
+                            // var restDiv = $("<button class='item'>");
+                            // restDiv.attr("data", placeId);
+                            var restName = results[i].name;
+                            // var restAddress = results[i].formatted_address;
+                            // var rating = results[i].rating;
+                            // var p = $("<p>").text("Name: " + restName);
+                            // var p3 = $("<p>").text("Rating: " + rating);
+                            // var p4 = $("<p>").text("Address: " + restAddress);
+                            // p.addClass("p");
+                            // restDiv.prepend(p3);
+                            // restDiv.prepend(p4);
+                            // restDiv.prepend(p);
 
-                    //         var restaurantObj = {
-                    //             name: restName,
-                    //             placeId: placeId
-                    //         }
-                       
-                    //     }
-                    //     foodResults.push(restaurantObj);
+                            var restaurantObj = {
+                                name: restName,
+                                placeId: placeId
+                            }
+                            foodResults.push(restaurantObj);
+                        }
+                        console.log(foodResults);
+                        renderResults(foodResults, "foodResults");
+
+                    });
                         // var id = $(this).attr("data");
                         // console.log(id);
                         // event.preventDefault();
@@ -178,17 +184,51 @@ $(document).ready(function () {
                         //     fResults.push(restaurantObj);
                         // });
 
+                    //THINGS TO DO
+                    var queryURL4 = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=things to do+in+" + destination + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
+                    $.ajax({
+                        url: queryURL4,
+                        method: "GET"
+                    }).then(function (thingsResponse) {
+                        var tResults = thingsResponse.results;
+                        console.log(tResults);
+                        for (var i = 0; i < tResults.length; i++) {
+                            var placeId3 = tResults[i].place_id;
+                            // var thingsDiv = $("<button class='things'>");
+                            // thingsDiv.attr("data", placeId3);
+                            var thingsName = tResults[i].name;
+                            // var thingsAddress = tResults[i].formatted_address;
+                            // var thingsRating = tResults[i].rating;
+                            // var hPhoto = $("<img>");
+                            // hPhoto.attr("src", hResults[i].photos[0])
+                            // var tp = $("<p>").text(thingsName);
+                            // var hp2 = $("<p>").text(hPhoto);
+                            // var tp3 = $("<p>").text(thingsRating);
+                            // var tp4 = $("<p>").text(thingsAddress);
+                            // var hp5 = $("<p>").text(hHours);
+                            // hp.addClass("hp");
+                            // hotelDiv.append(hp5);
+                            // thingsDiv.prepend(tp4);
+                            // thingsDiv.prepend(tp3);
+                            // hotelDiv.prepend(hp2);
+                            // thingsDiv.prepend(tp);
+                            // $("#toDoResults").prepend(thingsDiv);
+                            var thingsObj = {
+                                name: thingsName,
+                                placeId: placeId3
+                            }
+                            attrResults.push(thingsObj);
+                            console.log(attrResults);
+                            renderResults(attrResults, "attrResults");
+                        };
                     });
-
+                    
                     // pass in results array and string that is the name of the html element we are appending to
-                    renderResults(hotelResults, "hotelResults");
-                    renderResults(hResults, "hResults");
+                    
+                    // renderResults(fResults, "fResults");
                     // pass in results array and string that is the name of the html element we are appending to
-                    renderResults(foodResults, "foodResults");
-                    renderResults(fResults, "fResults");
-                    // pass in results array and string that is the name of the html element we are appending to
-                    renderResults(attrResults, "attrResults");
-                    renderResults(aResults, "aResults");
+                   
+                    // renderResults(aResults, "aResults");
 
                     function renderResults(resultsArry, cardContainer) {
                         for (var i = 0; i < resultsArry.length; i++) {
@@ -197,7 +237,7 @@ $(document).ready(function () {
                     <div class="card-header" id="heading-${cardContainer}-${i}">
                       <h5 class="mb-0">
                         <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse-${cardContainer}-${i}" aria-expanded="true" aria-controls="collapse-${cardContainer}-${i}">
-                          ${resultsArry[i].name} 
+                          ${resultsArry[i].name}
                         </button>
                       </h5>
                     </div>
@@ -229,6 +269,5 @@ $(document).ready(function () {
 
                 });
             
-        // });
+        });
    
-// });
