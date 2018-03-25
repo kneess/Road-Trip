@@ -7,13 +7,14 @@ $(document).ready(function () {
     var attrResults = []
     var aResults = [];
 
+    //HOTEL
     $(document).on("click", "#destinationCity", function (event) {
         event.preventDefault();
         var destination = $("#formGroupExampleInput").val().trim();
         console.log(destination);
-        var restArray = [];
-        var hotelArray = [];
-        var thingsToDoArray = [];
+        // var restArray = [];
+        // var hotelArray = [];
+        // var thingsToDoArray = [];
         var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=hotel+in+" + destination + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
         $.ajax({
             url: queryURL,
@@ -35,6 +36,13 @@ $(document).ready(function () {
             };
 
             renderCardHead(hotelResults, "hotelResults");
+
+            $(document).on("click", "#hotSurprise", function (event) {
+                event.preventDefault();
+                var random = hotelResults[Math.floor(Math.random() * hotelResults.length)];
+                console.log(random);
+                
+            });
 
             $(document).on("click", ".btn", function (event) {
                 var id2 = $(this).attr("data");
@@ -96,6 +104,13 @@ $(document).ready(function () {
             }
             console.log(foodResults);
             renderCardHead(foodResults, "foodResults");
+
+            $(document).on("click", "#foodSurprise", function (event) {
+                event.preventDefault();
+                var random2 = foodResults[Math.floor(Math.random() * foodResults.length)];
+                console.log(random2);
+                
+            });
         });
 
         var id = $(this).attr("data");
@@ -108,34 +123,15 @@ $(document).ready(function () {
         }).then(function (response2) {
             var results2 = response2.result;
             console.log(results2);
-            // var detailsDiv = $("<div class='details'>");
             var rName = results2.name;
             var rAddress = results2.formatted_address;
             var rRating = results2.rating;
-            // var hours = results2.opening_hours.weekday_text;
             var website = results2.website;
             var phone = results2.formatted_phone_number;
             var photo = $("<img>");
             var photoReference = results2.photos[0].photo_reference;
             var url = "https://maps.googleapis.com/maps/api/place/photo?photoreference=" + photoReference + "&sensor=false&maxheight=400&maxwidth=400&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
-            // $("#results").hide();
             photo.attr("src", url);
-            // var p7 = $("<p>").text("Name: " + rName);
-            // var p8 = $("<p>").text("Rating: " + rRating);
-            // var p9 = $("<p>").text("Address: " + rAddress);
-            // var p5 = $("<p>").text("Hours: " + hours);
-            // var p6 = $("<p>").text("Phone Number: " + phone);
-            // var p = $("<a>").text(website);
-            // var p2 = $("<a>").text(rName);
-            // p2.attr("href", website)
-            // detailsDiv.prepend(p5);
-            // detailsDiv.prepend(p8);
-            // detailsDiv.prepend(p6);
-            // detailsDiv.prepend(p9);
-            // detailsDiv.prepend(photo);
-            // detailsDiv.prepend(p2);
-            // $("#specs").prepend(detailsDiv);
-
             var restObj = {
                 name: rName,
                 address: rAddress,
@@ -146,6 +142,7 @@ $(document).ready(function () {
             };
 
             fResults.push(restObj);
+            renderCardBody(fResults, "fResults");
         });
 
         //THINGS TO DO
@@ -168,15 +165,49 @@ $(document).ready(function () {
 
             };
             renderCardHead(attrResults, "attrResults");
+            $(document).on("click", "#attrSurprise", function (event) {
+                event.preventDefault();
+                var random3 = attrResults[Math.floor(Math.random() * attrResults.length)];
+                console.log(random3);
+                
+            });
         });
 
-        // pass in results array and string that is the name of the html element we are appending to
 
-        // renderResults(fResults, "fResults");
-        // pass in results array and string that is the name of the html element we are appending to
+        var id3 = $(this).attr("data");
+        console.log(id3);
+        event.preventDefault();
+        var queryURL5 = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + id3 + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
+        $.ajax({
+            url: queryURL5,
+            method: "GET"
+        }).then(function (response5) {
+            var results5 = response5.result;
+            console.log(results5);
+            var tName = results5.name;
+            var tAddress = results5.formatted_address;
+            var tRating = results5.rating;
+            var photo3 = $("<img>");
+            var photoReference3 = results5.photos[0].photo_reference;
+            var url = "https://maps.googleapis.com/maps/api/place/photo?photoreference=" + photoReference3 + "&sensor=false&maxheight=400&maxwidth=400&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
+            photo3.attr("src", url);
+            var tWebsite = results5.website;
+            var tPhone = results5.formatted_phone_number;
+            var attrObj = {
+                name: tName,
+                address: tAddress,
+                contact: tphone,
+                rating: tRating,
+                image: photo3,
+                Link: twebsite
+            }
+            aResults.push(attrObj);
+            renderCardBody(aResults, "aResults");
+        });
 
-        // renderResults(aResults, "aResults");
-       
+
+        });
+
 
         function renderCardHead(resultsArry, cardContainer) {
             for (var i = 0; i < resultsArry.length; i++) {
@@ -190,8 +221,8 @@ $(document).ready(function () {
                       </h5>
                     </div>
                   `
-                var cardBody = 
-                $(card).append(cardHeader)
+                var cardBody =
+                    $(card).append(cardHeader)
                 $("#" + cardContainer).append(card)
             }
         }
@@ -237,4 +268,4 @@ $(document).ready(function () {
 
     });
 
-});
+// });
