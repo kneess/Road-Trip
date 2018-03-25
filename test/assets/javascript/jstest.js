@@ -1,9 +1,9 @@
 $(document).ready(function () {
 
     var hotelResults = []
-    var hResults = []
+    var hotResults = []
     var foodResults = []
-    var fResults =[]
+    var fResults = []
     var attrResults = []
     var aResults = [];
 
@@ -22,32 +22,21 @@ $(document).ready(function () {
             var hResults = hotelResponse.results;
             console.log(hResults);
             for (var i = 0; i < 10; i++) {
+
                 var placeId2 = hResults[i].place_id;
-                // var hotelDiv = $("<button class='hotel'>");
-                // hotelDiv.attr("data", placeId2);
                 var hotelName = hResults[i].name;
-                // var hotelAddress = hResults[i].formatted_address;
-                // var hotelRating = hResults[i].rating;
-                // var hp = $("<p>").text(hotelName);
-                // var hp3 = $("<p>").text(hotelRating);
-                // var hp4 = $("<p>").text(hotelAddress);
-                // hotelDiv.prepend(hp4);
-                // hotelDiv.prepend(hp3);
-                // hotelDiv.prepend(hp);
-                // $("#hotelResults").prepend(hotelDiv);
                 var hotelObj = {
                     name: hotelName,
                     placeId: placeId2
                 }
+
                 hotelResults.push(hotelObj);
                 console.log(hotelResults);
-                // pass in results array and string that is the name of the html element we are appending to
-                renderResults(hotelResults, "hotelResults");
-                
             };
-          
 
-            $(document).on("click", ".btn btn-link collapsed optionsBtn", function (event) {
+            renderCardHead(hotelResults, "hotelResults");
+
+            $(document).on("click", "#hotelButton", function (event) {
                 var id2 = $(this).attr("data");
                 console.log(this);
                 console.log(id2);
@@ -68,181 +57,159 @@ $(document).ready(function () {
                     var photoReference2 = results3.photos[0].photo_reference;
                     var url = "https://maps.googleapis.com/maps/api/place/photo?photoreference=" + photoReference2 + "&sensor=false&maxheight=400&maxwidth=400&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
                     photo2.attr("src", url);
-                    var hHours = results3.opening_hours.weekday_text;
                     var hWebsite = results3.website;
                     var hPhone = results3.formatted_phone_number;
-                    $("#hotelResults").hide();
-                    var hp7 = $("<p>").text("Name: " + hName);
-                    var hp8 = $("<p>").text("Rating: " + hRating);
-                    var hp9 = $("<p>").text("Address: " + hAddress);
-                    var hp5 = $("<p>").text("Hours: " + hHours);
-                    var hp6 = $("<p>").text("Phone Number: " + hPhone);
-                    // var p = $("<a>").text(website);
-                    var hp2 = $("<a>").text(hName);
-                    hp2.attr("href", hWebsite)
-                    detailsDiv2.prepend(hp5);
-                    detailsDiv2.prepend(hp8);
-                    detailsDiv2.prepend(hp6);
-                    detailsDiv2.prepend(hp9);
-                    detailsDiv2.prepend(photo2);
-                    detailsDiv2.prepend(hp2);
 
                     var hObj = {
                         name: hName,
                         address: hAddress,
-                        contact: hphone,
+                        contact: hPhone,
                         rating: hRating,
                         image: photo2,
-                        Link: hwebsite
-                    };               
+                        Link: hWebsite
+                    };
+                    hotResults.push(hObj);
+                    console.log(hotResults);
+                    renderCardBody(hotResults, "hotResults");
                 })
-                hResults.push(hObj);
+
             });
-            
+
         });
-                //RESTAURANT
-               
-                    var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurant+" + destination + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
-                    $.ajax({
-                        url: queryURL,
-                        method: "GET"
-                    }).then(function (response) {
-                        var results = response.results;
-                        console.log(results);
-                        for (var i = 0; i < 10; i++) {
-                            var placeId = results[i].place_id;
-                            // var restDiv = $("<button class='item'>");
-                            // restDiv.attr("data", placeId);
-                            var restName = results[i].name;
-                            // var restAddress = results[i].formatted_address;
-                            // var rating = results[i].rating;
-                            // var p = $("<p>").text("Name: " + restName);
-                            // var p3 = $("<p>").text("Rating: " + rating);
-                            // var p4 = $("<p>").text("Address: " + restAddress);
-                            // p.addClass("p");
-                            // restDiv.prepend(p3);
-                            // restDiv.prepend(p4);
-                            // restDiv.prepend(p);
+        //RESTAURANT
 
-                            var restaurantObj = {
-                                name: restName,
-                                placeId: placeId
-                            }
-                            foodResults.push(restaurantObj);
-                        }
-                        console.log(foodResults);
-                        renderResults(foodResults, "foodResults");
+        var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurant+" + destination + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+            var results = response.results;
+            console.log(results);
+            for (var i = 0; i < 10; i++) {
+                var placeId = results[i].place_id;
+                var restName = results[i].name;
+                var restaurantObj = {
+                    name: restName,
+                    placeId: placeId
+                }
+                foodResults.push(restaurantObj);
+            }
+            console.log(foodResults);
+            renderCardHead(foodResults, "foodResults");
+        });
 
-                    });
-                        // var id = $(this).attr("data");
-                        // console.log(id);
-                        // event.preventDefault();
-                        // var queryURL2 = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + id + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
-                        // $.ajax({
-                        //     url: queryURL2,
-                        //     method: "GET"
-                        // }).then(function (response2) {
-                        //     var results2 = response2.result;
-                        //     console.log(results2);
-                        //     var detailsDiv = $("<div class='details'>");
-                        //     var rName = results2.name;
-                        //     var rAddress = results2.formatted_address;
-                        //     var rRating = results2.rating;
-                        //     var hours = results2.opening_hours.weekday_text;
-                        //     var website = results2.website;
-                        //     var phone = results2.formatted_phone_number;
-                        //     var photo = $("<img>");
-                        //     var photoReference = results2.photos[0].photo_reference;
-                        //     var url = "https://maps.googleapis.com/maps/api/place/photo?photoreference=" + photoReference + "&sensor=false&maxheight=400&maxwidth=400&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
-                        //     $("#results").hide();
-                        //     photo.attr("src", url);
-                        //     var p7 = $("<p>").text("Name: " + rName);
-                        //     var p8 = $("<p>").text("Rating: " + rRating);
-                        //     var p9 = $("<p>").text("Address: " + rAddress);
-                        //     var p5 = $("<p>").text("Hours: " + hours);
-                        //     var p6 = $("<p>").text("Phone Number: " + phone);
-                        //     // var p = $("<a>").text(website);
-                        //     var p2 = $("<a>").text(rName);
-                        //     p2.attr("href", website)
-                        //     detailsDiv.prepend(p5);
-                        //     detailsDiv.prepend(p8);
-                        //     detailsDiv.prepend(p6);
-                        //     detailsDiv.prepend(p9);
-                        //     detailsDiv.prepend(photo);
-                        //     detailsDiv.prepend(p2);
-                        //     // $("#specs").prepend(detailsDiv);
 
-                        //     var restaurantObj = {
-                        //         name: rName,
-                        //         address: rAddress,
-                        //         contact: phone,
-                        //         rating: rRating,
-                        //         image: photo,
-                        //         Link: website
-                        //     };
+        // var id = $(this).attr("data");
+        // console.log(id);
+        // event.preventDefault();
+        // var queryURL2 = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + id + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
+        // $.ajax({
+        //     url: queryURL2,
+        //     method: "GET"
+        // }).then(function (response2) {
+        //     var results2 = response2.result;
+        //     console.log(results2);
+        //     var detailsDiv = $("<div class='details'>");
+        //     var rName = results2.name;
+        //     var rAddress = results2.formatted_address;
+        //     var rRating = results2.rating;
+        //     var hours = results2.opening_hours.weekday_text;
+        //     var website = results2.website;
+        //     var phone = results2.formatted_phone_number;
+        //     var photo = $("<img>");
+        //     var photoReference = results2.photos[0].photo_reference;
+        //     var url = "https://maps.googleapis.com/maps/api/place/photo?photoreference=" + photoReference + "&sensor=false&maxheight=400&maxwidth=400&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
+        //     $("#results").hide();
+        //     photo.attr("src", url);
+        //     var p7 = $("<p>").text("Name: " + rName);
+        //     var p8 = $("<p>").text("Rating: " + rRating);
+        //     var p9 = $("<p>").text("Address: " + rAddress);
+        //     var p5 = $("<p>").text("Hours: " + hours);
+        //     var p6 = $("<p>").text("Phone Number: " + phone);
+        //     // var p = $("<a>").text(website);
+        //     var p2 = $("<a>").text(rName);
+        //     p2.attr("href", website)
+        //     detailsDiv.prepend(p5);
+        //     detailsDiv.prepend(p8);
+        //     detailsDiv.prepend(p6);
+        //     detailsDiv.prepend(p9);
+        //     detailsDiv.prepend(photo);
+        //     detailsDiv.prepend(p2);
+        //     // $("#specs").prepend(detailsDiv);
 
-                        //     fResults.push(restaurantObj);
-                        // });
+        //     var restaurantObj = {
+        //         name: rName,
+        //         address: rAddress,
+        //         contact: phone,
+        //         rating: rRating,
+        //         image: photo,
+        //         Link: website
+        //     };
 
-                    //THINGS TO DO
-                    var queryURL4 = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=things to do+in+" + destination + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
-                    $.ajax({
-                        url: queryURL4,
-                        method: "GET"
-                    }).then(function (thingsResponse) {
-                        var tResults = thingsResponse.results;
-                        console.log(tResults);
-                        for (var i = 0; i < tResults.length; i++) {
-                            var placeId3 = tResults[i].place_id;
-                            // var thingsDiv = $("<button class='things'>");
-                            // thingsDiv.attr("data", placeId3);
-                            var thingsName = tResults[i].name;
-                            // var thingsAddress = tResults[i].formatted_address;
-                            // var thingsRating = tResults[i].rating;
-                            // var hPhoto = $("<img>");
-                            // hPhoto.attr("src", hResults[i].photos[0])
-                            // var tp = $("<p>").text(thingsName);
-                            // var hp2 = $("<p>").text(hPhoto);
-                            // var tp3 = $("<p>").text(thingsRating);
-                            // var tp4 = $("<p>").text(thingsAddress);
-                            // var hp5 = $("<p>").text(hHours);
-                            // hp.addClass("hp");
-                            // hotelDiv.append(hp5);
-                            // thingsDiv.prepend(tp4);
-                            // thingsDiv.prepend(tp3);
-                            // hotelDiv.prepend(hp2);
-                            // thingsDiv.prepend(tp);
-                            // $("#toDoResults").prepend(thingsDiv);
-                            var thingsObj = {
-                                name: thingsName,
-                                placeId: placeId3
-                            }
-                            attrResults.push(thingsObj);
-                            console.log(attrResults);
-                            renderResults(attrResults, "attrResults");
-                        };
-                    });
-                    
-                    // pass in results array and string that is the name of the html element we are appending to
-                    
-                    // renderResults(fResults, "fResults");
-                    // pass in results array and string that is the name of the html element we are appending to
-                   
-                    // renderResults(aResults, "aResults");
+        //     fResults.push(restaurantObj);
+        // });
 
-                    function renderResults(resultsArry, cardContainer) {
-                        for (var i = 0; i < resultsArry.length; i++) {
-                            var card = $("<div>").addClass("card");
-                            var cardHeader = ` 
+        //THINGS TO DO
+        var queryURL4 = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=things to do+in+" + destination + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
+        $.ajax({
+            url: queryURL4,
+            method: "GET"
+        }).then(function (thingsResponse) {
+            var tResults = thingsResponse.results;
+            console.log(tResults);
+            for (var i = 0; i < 10; i++) {
+                var placeId3 = tResults[i].place_id;
+                var thingsName = tResults[i].name;
+                var thingsObj = {
+                    name: thingsName,
+                    placeId: placeId3
+                }
+                attrResults.push(thingsObj);
+                console.log(attrResults);
+
+            };
+            renderCardHead(attrResults, "attrResults");
+        });
+
+        // pass in results array and string that is the name of the html element we are appending to
+
+        // renderResults(fResults, "fResults");
+        // pass in results array and string that is the name of the html element we are appending to
+
+        // renderResults(aResults, "aResults");
+       
+
+        function renderCardHead(resultsArry, cardContainer) {
+            for (var i = 0; i < resultsArry.length; i++) {
+                var card = $("<div>").addClass("card");
+                var cardHeader = ` 
                     <div class="card-header" id="heading-${cardContainer}-${i}">
                       <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse-${cardContainer}-${i}" aria-expanded="true" aria-controls="collapse-${cardContainer}-${i}">
+                        <button class="btn btn-link collapsed" id="hotelButton" data = ${resultsArry[i].placeId} data-toggle="collapse" data-target="#collapse-${cardContainer}-${i}" aria-expanded="true" aria-controls="collapse-${cardContainer}-${i}">
                           ${resultsArry[i].name}
                         </button>
                       </h5>
                     </div>
                   `
-                            var cardBody = `
+                var cardBody = 
+                $(card).append(cardHeader)
+                $("#" + cardContainer).append(card)
+            }
+        }
+
+        function renderCardBody(resultsArry, cardContainer) {
+            for (var i = 0; i < resultsArry.length; i++) {
+                var card = $("<div>").addClass("card");
+                var cardHeader = ` 
+                    <div class="card-header" id="heading-${cardContainer}-${i}">
+                      <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" id="hotelButton" data = ${resultsArry[i].placeId} data-toggle="collapse" data-target="#collapse-${cardContainer}-${i}" aria-expanded="true" aria-controls="collapse-${cardContainer}-${i}">
+                          ${resultsArry[i].name}
+                        </button>
+                      </h5>
+                    </div>
+                  `
+                var cardBody = `
                 <div id="collapse-${cardContainer}-${i}" class="collapse" aria-labelledby="heading-${cardContainer}-${i}">
                     <div class="card-body">
                       <div class="row">
@@ -261,13 +228,14 @@ $(document).ready(function () {
                     </div>
                 </div>
                 `
-                            $(card).append(cardHeader, cardBody)
-                            $("#" + cardContainer).append(card)
-                        }
-                    }
+                // $(card).append(cardHeader)
+                $("#" + cardContainer).append(card)
+                // $(card).append(cardBody)
+                // $("#" + cardContainer).append(cardHeader)
+            }
+        }
 
 
-                });
-            
-        });
-   
+    });
+
+});
