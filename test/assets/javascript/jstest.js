@@ -12,9 +12,6 @@ $(document).ready(function () {
         event.preventDefault();
         var destination = $("#formGroupExampleInput").val().trim();
         console.log(destination);
-        // var restArray = [];
-        // var hotelArray = [];
-        // var thingsToDoArray = [];
         var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=hotel+in+" + destination + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
         $.ajax({
             url: queryURL,
@@ -165,12 +162,12 @@ $(document).ready(function () {
 
             };
             renderCardHead(attrResults, "attrResults");
+
             $(document).on("click", "#attrSurprise", function (event) {
                 event.preventDefault();
                 var random3 = attrResults[Math.floor(Math.random() * attrResults.length)];
                 console.log(random3);
-                
-            });
+                });
         });
 
 
@@ -221,24 +218,6 @@ $(document).ready(function () {
                       </h5>
                     </div>
                   `
-                var cardBody =
-                    $(card).append(cardHeader)
-                $("#" + cardContainer).append(card)
-            }
-        }
-
-        function renderCardBody(resultsArry, cardContainer) {
-            for (var i = 0; i < resultsArry.length; i++) {
-                var card = $("<div>").addClass("card");
-                var cardHeader = ` 
-                    <div class="card-header" id="heading-${cardContainer}-${i}">
-                      <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data = ${resultsArry[i].placeId} data-toggle="collapse" data-target="#collapse-${cardContainer}-${i}" aria-expanded="true" aria-controls="collapse-${cardContainer}-${i}">
-                          ${resultsArry[i].name}
-                        </button>
-                      </h5>
-                    </div>
-                  `
                 var cardBody = `
                 <div id="collapse-${cardContainer}-${i}" class="collapse" aria-labelledby="heading-${cardContainer}-${i}">
                     <div class="card-body">
@@ -258,8 +237,45 @@ $(document).ready(function () {
                     </div>
                 </div>
                 `
-                $(".card").append(cardBody)
+
+                    $(card).append(cardHeader, cardBody)
                 $("#" + cardContainer).append(card)
+            }
+        }
+
+        function renderCardBody(resultsArry, cardContainer) {
+            for (var i = 0; i < resultsArry.length; i++) {
+                var card = $("<div>").addClass("card");
+                var cardHeader = ` 
+                    <div class="card-header" id="heading-${cardContainer}-${i}">
+                      <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data = ${resultsArry[i].placeId} data-toggle="collapse" data-target="#collapse-${cardContainer}-${i}" aria-expanded="true" aria-controls="collapse-${cardContainer}-${i}">
+                          ${resultsArry[i].name}
+                        </button>
+                      </h5>
+                    </div>
+                  `
+                var cardBody2 = `
+                <div id="collapse-${cardContainer}-${i}" class="collapse" aria-labelledby="heading-${cardContainer}-${i}">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <p><strong>Address:</strong> ${resultsArry[i].address}</p>
+                        <p><strong>Contact:</strong> ${resultsArry[i].contact}</p>
+                        <p><strong>Rating:</strong> ${resultsArry[i].rating}</p>
+                       
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <img src="${resultsArry[i].image}">
+                        <p>${resultsArry[i].description}</p>
+                        <a href="${resultsArry[i].link}">Learn More</a>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                `
+                $(card).replaceWith(cardHeader, cardBody2)
+                // $("#" + cardContainer).append(card)
                 // $(card).append(cardBody)
                 // $("#" + cardContainer).append(cardHeader)
             }
