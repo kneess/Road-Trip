@@ -139,6 +139,8 @@ $(document).ready(function () {
             };
 
             fResults.push(restObj);
+            console.log(fResults);
+
             renderCardBody(fResults, "fResults");
         });
 
@@ -218,7 +220,8 @@ $(document).ready(function () {
                       </h5>
                     </div>
                   `
-                var cardBody = `
+                var cardBody = 
+                `
                 <div id="collapse-${cardContainer}-${i}" class="collapse" aria-labelledby="heading-${cardContainer}-${i}">
                     <div class="card-body">
                       <div class="row">
@@ -244,7 +247,7 @@ $(document).ready(function () {
         }
 
         function renderCardBody(resultsArry, cardContainer) {
-            for (var i = 0; i < resultsArry.length; i++) {
+            // for (var i = 0; i < resultsArry.length; i++) {
                 var card = $("<div>").addClass("card");
                 var cardHeader = ` 
                     <div class="card-header" id="heading-${cardContainer}-${i}">
@@ -255,7 +258,7 @@ $(document).ready(function () {
                       </h5>
                     </div>
                   `
-                var cardBody2 = `
+                var cardBody = `
                 <div id="collapse-${cardContainer}-${i}" class="collapse" aria-labelledby="heading-${cardContainer}-${i}">
                     <div class="card-body">
                       <div class="row">
@@ -274,11 +277,11 @@ $(document).ready(function () {
                     </div>
                 </div>
                 `
-                $(card).replaceWith(cardHeader, cardBody2)
+                $(card).append(cardHeader, cardBody);
                 // $("#" + cardContainer).append(card)
                 // $(card).append(cardBody)
                 // $("#" + cardContainer).append(cardHeader)
-            }
+            // }
         }
 
 
