@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Road Trip</title>
+  <title>Services</title>
   <!-- Media Query -->
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <!-- Reset CSS -->
@@ -15,12 +15,11 @@
   <link href="https://fonts.googleapis.com/css?family=Rancho" rel="stylesheet">
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
 </head>
 
 <body>
   <!--this is the wrapper that holds the background image-->
-  <div id="wrapper" align="center">
+  <div class="wrapper" align="center">
     <!-- row 1 Header Image -->
     <div class="card-wrap">
       <div class="card">
@@ -28,26 +27,41 @@
       </div>
     </div>
     <div class="container">
-      <!-- row 2 Form-->
-      <div id="destinationForm" align="center">
-        <h1 id="destination">Where would you like to go?</h1>
-          <form class="form-inline">
-            <div class="input-group desitinationWrap">
-             <input type="text" class="form-control" id="destinationInput" placeholder="Destination City">
-             <span class="input-group-btn">
-                  <button class="btn btn-success" id="destinationCity" type="button">Go!</button>
-             </span>
+
+      <!-- row 2 weather info -->
+      <div id="wxContainer">
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-lg-12">
+            <h1 id="selectedLocation">Phoenix</h1>
           </div>
-          </form>
+        </div>
+
+        <div class="row" id="weatherBox">
+
+          <div class="col-sm-3 col-md-3 vertRule ">
+            <div id="currentTemp">Current Temp</div>
+          </div>
+
+          <div class="col-sm-3 col-md-3 vertRule">
+            <div id="currentTemp">Tomorrows Forecast</div>
+          </div>
+
+          <div class="col-sm-3 col-md-3 vertRule">
+            <div id="currentTemp">2 Day Forecast</div>
+          </div>
+
+          <div class="col-sm-3 col-md-3 col-lg-3">
+            <div id="currentTemp">3 Day Forecast</div>
+          </div>
+
+        </div>
       </div>
-     
 
-      <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-      <!-- ADDED CODE FROM SERVICES PAGE -->
-      <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
-      <div class="row hide" align="center" id="section2">
-        <h2 id="selectedDestination"></h2>
+
+
+      <div class="row" align="center">
+
         <!-- row 3 column 1 HOTELS-->
         <div class="col-sm-4 col-md-4 col-lg-4">
           <div id="accordionHotel">
@@ -129,7 +143,7 @@
 
       </div>
     </div>
-  </div> <!-- closing div for wrapper -->
+
 
     <!-- jQuery -->
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -147,7 +161,7 @@
     <!-- <script src="http://momentjs.com/downloads/moment.js"></script>   -->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <script>
-       var hotelResults = [
+      var hotelResults = [
         {
           name: "hotels Me",
           address: "123 hotel rd someplace",
@@ -221,6 +235,8 @@
           image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHXl6PC90NpSbT4w-6f59xBsulUOrv6ZZXlg4hbSZ03SbQ-WUj",
           link: "http://www.hotel.com"
         },
+
+
       ]
 
       var attrResults = [
@@ -234,40 +250,19 @@
           image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOuIAFEvR7VhSxykz0VS9aPtaF5bP094eV03MaekuaxIM3_4ot",
           link: "http://www.hotel.com"
         }
+
       ]
 
+      // pass in results array and string that is the name of the html element we are appending to
+      renderResults(hotelResults, "hotelResults");
 
 
-      $("#destinationCity").on("click", function(event){
-        event.preventDefault();
-        var destination = $("#destinationInput").val()
-        destination = destination.toLowerCase()
-        if(destination.length>0){
-
-          // api calls here
-          // results from api call be the dummy data above 
-          // pass in results array and string that is the name of the html element we are appending to
-          $("#destinationForm").addClass("hide")
-          $("#section2").removeClass("hide");
-          $("#selectedDestination").text("")
-          $("#selectedDestination").text(destination)
-          renderResults(hotelResults, "hotelResults");
+      // pass in results array and string that is the name of the html element we are appending to
+      renderResults(foodResults, "foodResults");
 
 
-          // pass in results array and string that is the name of the html element we are appending to
-          renderResults(foodResults, "foodResults");
-
-
-          // pass in results array and string that is the name of the html element we are appending to
-          renderResults(attrResults, "attrResults");
-        }
-
-      })
-
-
-     
-
-      
+      // pass in results array and string that is the name of the html element we are appending to
+      renderResults(attrResults, "attrResults");
 
 
 
@@ -314,7 +309,6 @@
 
 
     </script>
-
 </body>
 
 </html>
