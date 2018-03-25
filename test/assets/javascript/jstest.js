@@ -36,7 +36,7 @@ $(document).ready(function () {
 
             renderCardHead(hotelResults, "hotelResults");
 
-            $(document).on("click", "#hotelButton", function (event) {
+            $(document).on("click", ".btn", function (event) {
                 var id2 = $(this).attr("data");
                 console.log(this);
                 console.log(id2);
@@ -98,56 +98,55 @@ $(document).ready(function () {
             renderCardHead(foodResults, "foodResults");
         });
 
+        var id = $(this).attr("data");
+        console.log(id);
+        event.preventDefault();
+        var queryURL2 = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + id + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
+        $.ajax({
+            url: queryURL2,
+            method: "GET"
+        }).then(function (response2) {
+            var results2 = response2.result;
+            console.log(results2);
+            // var detailsDiv = $("<div class='details'>");
+            var rName = results2.name;
+            var rAddress = results2.formatted_address;
+            var rRating = results2.rating;
+            // var hours = results2.opening_hours.weekday_text;
+            var website = results2.website;
+            var phone = results2.formatted_phone_number;
+            var photo = $("<img>");
+            var photoReference = results2.photos[0].photo_reference;
+            var url = "https://maps.googleapis.com/maps/api/place/photo?photoreference=" + photoReference + "&sensor=false&maxheight=400&maxwidth=400&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
+            // $("#results").hide();
+            photo.attr("src", url);
+            // var p7 = $("<p>").text("Name: " + rName);
+            // var p8 = $("<p>").text("Rating: " + rRating);
+            // var p9 = $("<p>").text("Address: " + rAddress);
+            // var p5 = $("<p>").text("Hours: " + hours);
+            // var p6 = $("<p>").text("Phone Number: " + phone);
+            // var p = $("<a>").text(website);
+            // var p2 = $("<a>").text(rName);
+            // p2.attr("href", website)
+            // detailsDiv.prepend(p5);
+            // detailsDiv.prepend(p8);
+            // detailsDiv.prepend(p6);
+            // detailsDiv.prepend(p9);
+            // detailsDiv.prepend(photo);
+            // detailsDiv.prepend(p2);
+            // $("#specs").prepend(detailsDiv);
 
-        // var id = $(this).attr("data");
-        // console.log(id);
-        // event.preventDefault();
-        // var queryURL2 = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + id + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
-        // $.ajax({
-        //     url: queryURL2,
-        //     method: "GET"
-        // }).then(function (response2) {
-        //     var results2 = response2.result;
-        //     console.log(results2);
-        //     var detailsDiv = $("<div class='details'>");
-        //     var rName = results2.name;
-        //     var rAddress = results2.formatted_address;
-        //     var rRating = results2.rating;
-        //     var hours = results2.opening_hours.weekday_text;
-        //     var website = results2.website;
-        //     var phone = results2.formatted_phone_number;
-        //     var photo = $("<img>");
-        //     var photoReference = results2.photos[0].photo_reference;
-        //     var url = "https://maps.googleapis.com/maps/api/place/photo?photoreference=" + photoReference + "&sensor=false&maxheight=400&maxwidth=400&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
-        //     $("#results").hide();
-        //     photo.attr("src", url);
-        //     var p7 = $("<p>").text("Name: " + rName);
-        //     var p8 = $("<p>").text("Rating: " + rRating);
-        //     var p9 = $("<p>").text("Address: " + rAddress);
-        //     var p5 = $("<p>").text("Hours: " + hours);
-        //     var p6 = $("<p>").text("Phone Number: " + phone);
-        //     // var p = $("<a>").text(website);
-        //     var p2 = $("<a>").text(rName);
-        //     p2.attr("href", website)
-        //     detailsDiv.prepend(p5);
-        //     detailsDiv.prepend(p8);
-        //     detailsDiv.prepend(p6);
-        //     detailsDiv.prepend(p9);
-        //     detailsDiv.prepend(photo);
-        //     detailsDiv.prepend(p2);
-        //     // $("#specs").prepend(detailsDiv);
+            var restObj = {
+                name: rName,
+                address: rAddress,
+                contact: phone,
+                rating: rRating,
+                image: photo,
+                Link: website
+            };
 
-        //     var restaurantObj = {
-        //         name: rName,
-        //         address: rAddress,
-        //         contact: phone,
-        //         rating: rRating,
-        //         image: photo,
-        //         Link: website
-        //     };
-
-        //     fResults.push(restaurantObj);
-        // });
+            fResults.push(restObj);
+        });
 
         //THINGS TO DO
         var queryURL4 = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=things to do+in+" + destination + "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
@@ -185,7 +184,7 @@ $(document).ready(function () {
                 var cardHeader = ` 
                     <div class="card-header" id="heading-${cardContainer}-${i}">
                       <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" id="hotelButton" data = ${resultsArry[i].placeId} data-toggle="collapse" data-target="#collapse-${cardContainer}-${i}" aria-expanded="true" aria-controls="collapse-${cardContainer}-${i}">
+                        <button class="btn btn-link collapsed" data = ${resultsArry[i].placeId} data-toggle="collapse" data-target="#collapse-${cardContainer}-${i}" aria-expanded="true" aria-controls="collapse-${cardContainer}-${i}">
                           ${resultsArry[i].name}
                         </button>
                       </h5>
@@ -203,7 +202,7 @@ $(document).ready(function () {
                 var cardHeader = ` 
                     <div class="card-header" id="heading-${cardContainer}-${i}">
                       <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" id="hotelButton" data = ${resultsArry[i].placeId} data-toggle="collapse" data-target="#collapse-${cardContainer}-${i}" aria-expanded="true" aria-controls="collapse-${cardContainer}-${i}">
+                        <button class="btn btn-link collapsed" data = ${resultsArry[i].placeId} data-toggle="collapse" data-target="#collapse-${cardContainer}-${i}" aria-expanded="true" aria-controls="collapse-${cardContainer}-${i}">
                           ${resultsArry[i].name}
                         </button>
                       </h5>
@@ -228,7 +227,7 @@ $(document).ready(function () {
                     </div>
                 </div>
                 `
-                // $(card).append(cardHeader)
+                $(".card").append(cardBody)
                 $("#" + cardContainer).append(card)
                 // $(card).append(cardBody)
                 // $("#" + cardContainer).append(cardHeader)
