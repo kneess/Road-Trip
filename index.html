@@ -29,7 +29,7 @@
     </div>
     <div class="container">
       <!-- row 2 Form-->
-      <div id="destinationForm" align="center">
+      <div id="destinationForm" class="hide" align="center">
         <h1 id="destination">Where would you like to go?</h1>
           <form class="form-inline">
             <div class="input-group desitinationWrap">
@@ -46,89 +46,150 @@
       <!-- ADDED CODE FROM SERVICES PAGE -->
       <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
-      <div class="row hide" align="center" id="section2">
-        <h2 id="selectedDestination"></h2>
-        <!-- row 3 column 1 HOTELS-->
-        <div class="col-sm-4 col-md-4 col-lg-4">
-          <div id="accordionHotel">
-            <div class="card top-card">
-              <div class="card-header" id="headingA">
-                <h5 class="mb-0">
-                  <button class="btn btn-link collapsed optionsBtn" data-toggle="collapse" data-target="#collapseHotel" aria-expanded="false"
-                    aria-controls="collapseHotel">
-                    <img src="./images/hotels.png" class="optionsImg"> Hotels
+      <div class="hide" align="center" id="section2">
 
-                  </button>
-                </h5>
+        <!-- row 2 weather info -->
+        <div id="wxContainer">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <h2 id="selectedDestination"></h2>
               </div>
-              <div id="collapseHotel" class="collapse" aria-labelledby="headingHotel" data-parent="#accordionHotel">
-                <div class="card-body">
-                  <button class="btn btn-primary surprise">Surprise Me!</button>
+            </div>
+    
+            <!-- orig wx container – Kathy -->
+            <!-- <div class="row" id="weatherBox">
+    
+              <div class="col-sm-3 col-md-3 vertRule ">
+                <div id="currentTemp">Current Temp</div>
+              </div>
+    
+              <div class="col-sm-3 col-md-3 vertRule">
+                <div id="currentTemp">Tomorrows Forecast</div>
+              </div>
+    
+              <div class="col-sm-3 col-md-3 vertRule">
+                <div id="currentTemp">2 Day Forecast</div>
+              </div>
+    
+              <div class="col-sm-3 col-md-3 col-lg-3">
+                <div id="currentTemp">3 Day Forecast</div>
+              </div>
+    
+            </div> -->
 
-                  <div id="hotelResults">
+            <!-- New wx container – Zane -->
+            <div class="row" id="weather">
+                  <div id="currentTemp" class="col-sm-3 col-md-3 vertRule">Current Temp in <span class="selectedDestination"></span></div>
+                  <div id="dayOneForecast" class="col-sm-3 col-md-3 vertRule">Todays Forecast in <span class="selectedDestination"></span>
+                    <img id="todayIcon" src="" alt="">
+                    <div id="today"></div>
+                    <div id="hiTempToday"></div>
+                    <div id="lowTempToday"></div>
+                    <div id="rainToday"></div>
+                  </div>
+                  <div id="dayTwoForecast" class="col-sm-3 col-md-3 vertRule">2 Day Forecast for <span class="selectedDestination"></span>
+                    <img id="twoDayIcons" src="" alt="">
+                    <div id="dayTwo"></div>
+                    <div id="hiTempDayTwo"></div>
+                    <div id="lowTempDayTwo"></div>
+                    <div id="rainDayTwo"></div>
+                  </div>
+                  <div id="dayThreeForecast" class="col-sm-3 col-md-3">3 Day Forecast for <span class="selectedDestination"></span>
+                    <img id="ThreeDayIcons" src="" alt="">
+                    <div id="dayThree"></div>
+                    <div id="hiTempDayThree"></div>
+                    <div id="lowTempDayThree"></div>
+                    <div id="rainDayThree"></div>
+                  </div>
+            </div>
+
+        </div>
+          
+        <div class="row">
+          <!-- row 3 column 1 HOTELS-->
+          <div class="col-sm-4 col-md-4 col-lg-4">
+            <div id="accordionHotel">
+              <div class="card top-card">
+                <div class="card-header" id="headingA">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link collapsed optionsBtn" data-toggle="collapse" data-target="#collapseHotel" aria-expanded="false"
+                      aria-controls="collapseHotel">
+                      <img src="./images/hotels.png" class="optionsImg"> Hotels
+
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapseHotel" class="collapse" aria-labelledby="headingHotel" data-parent="#accordionHotel">
+                  <div class="card-body">
+                    <button class="btn btn-primary surprise">Surprise Me!</button>
+
+                    <div id="hotelResults">
+
+                    </div>
 
                   </div>
-
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- row 4 column 1 FOOD-->
-        <div class="col-sm-4 col-md-4 col-lg-4">
-          <div id="accordionFood">
-            <div class="card top-card">
-              <div class="card-header" id="headingFood">
-                <h5 class="mb-0">
-                  <button class="btn btn-link collapsed optionsBtn" data-toggle="collapse" data-target="#collapseFood" aria-expanded="false"
-                    aria-controls="collapseFood">
-                    <img src="./images/food.png" class="optionsImg"> Food
-                  </button>
-                </h5>
-              </div>
-              <div id="collapseFood" class="collapse" aria-labelledby="headingFood" data-parent="#accordionFood">
-                <div class="card-body">
-                  <button class="btn btn-primary surprise">Surprise Me!!</button>
+          <!-- row 4 column 1 FOOD-->
+          <div class="col-sm-4 col-md-4 col-lg-4">
+            <div id="accordionFood">
+              <div class="card top-card">
+                <div class="card-header" id="headingFood">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link collapsed optionsBtn" data-toggle="collapse" data-target="#collapseFood" aria-expanded="false"
+                      aria-controls="collapseFood">
+                      <img src="./images/food.png" class="optionsImg"> Food
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapseFood" class="collapse" aria-labelledby="headingFood" data-parent="#accordionFood">
+                  <div class="card-body">
+                    <button class="btn btn-primary surprise">Surprise Me!!</button>
 
-                  <div id="foodResults">
+                    <div id="foodResults">
+                    </div>
+
                   </div>
-
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- row 5 column 1 THINGS TO DO-->
-        <div class=" col-sm-4 col-md-4 col-lg-4">
-          <div id="accordionAttractions">
-            <div class="card top-card">
-              <div class="card-header" id="headingAttractions">
-                <h5 class="mb-0">
-                  <button class="btn btn-link collapsed optionsBtn" data-toggle="collapse" data-target="#collapseAttractions" aria-expanded="false"
-                    aria-controls="collapseAttractions">
-                    <img src="./images/attractions.png" class="optionsImg"> Things to do
-                  </button>
-                </h5>
-              </div>
-              <div id="collapseAttractions" class="collapse" aria-labelledby="headingAttractions" data-parent="#accordionAttractions">
-                <div class="card-body">
-                  <button class="btn btn-primary surprise">Surprise Me!!</button>
+          <!-- row 5 column 1 THINGS TO DO-->
+          <div class=" col-sm-4 col-md-4 col-lg-4">
+            <div id="accordionAttractions">
+              <div class="card top-card">
+                <div class="card-header" id="headingAttractions">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link collapsed optionsBtn" data-toggle="collapse" data-target="#collapseAttractions" aria-expanded="false"
+                      aria-controls="collapseAttractions">
+                      <img src="./images/attractions.png" class="optionsImg"> Things to do
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapseAttractions" class="collapse" aria-labelledby="headingAttractions" data-parent="#accordionAttractions">
+                  <div class="card-body">
+                    <button class="btn btn-primary surprise">Surprise Me!!</button>
 
-                  <div id="attrResults">
+                    <div id="attrResults">
+
+                    </div>
 
                   </div>
-
                 </div>
               </div>
-            </div>
 
+            </div>
           </div>
         </div>
-
+        <button class="btn btn-warning" id="startOver">Start Over</button>
       </div>
+
     </div>
+
   </div> <!-- closing div for wrapper -->
 
     <!-- jQuery -->
@@ -147,7 +208,13 @@
     <!-- <script src="http://momentjs.com/downloads/moment.js"></script>   -->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <script>
-       var hotelResults = [
+      // when scripts runs animate the form to show
+      $("#destinationForm").slideDown("slow");
+
+      // api result variables that currently hold dummy data, results for each
+      // api call excluding weather should be formatted in an array of object 
+      // to be properly displayed on the page
+      var hotelResults = [
         {
           name: "hotels Me",
           address: "123 hotel rd someplace",
@@ -236,21 +303,42 @@
         }
       ]
 
+      var destionationWeather;
+
+      // use global variables so that the data is accessible for other functions
+      var currentCity;
+      var userLocationInfo;
+
+      // grabs the users location information 
+      $.get("https://freegeoip.net/json/", function(res){
+        userLocationInfo = res;
+        console.log("userLocationInfo:", userLocationInfo)
+        currentCity = res.city
+      }, "jsonp")
 
 
+      // starts gthe application, after a user inputs theri destination all other functions are triggered 
       $("#destinationCity").on("click", function(event){
         event.preventDefault();
-        var destination = $("#destinationInput").val()
-        destination = destination.toLowerCase()
+        var destination = $("#destinationInput").val().trim();
+        destination = destination.toLowerCase();
         if(destination.length>0){
 
           // api calls here
-          // results from api call be the dummy data above 
+          // create seperate functions for each api call and call the functions here
+
+          // results from each api call be the dummy data above 
+
+          // animation for hiding and showing content on the page 
+          $("#destinationForm").slideUp("slow"); // hides the form
+          $("#section2").slideDown("slow"); // shows the results
+
+          // display the chosen destination and the current location for the user 
+          $("#selectedDestination").html("")
+          $("#selectedDestination").html(currentCity + " ↝ " + "<span><strong>" + destination + "</strong></span>");
+          $(".selectedDestination").text(destination)
+           
           // pass in results array and string that is the name of the html element we are appending to
-          $("#destinationForm").addClass("hide")
-          $("#section2").removeClass("hide");
-          $("#selectedDestination").text("")
-          $("#selectedDestination").text(destination)
           renderResults(hotelResults, "hotelResults");
 
 
@@ -264,13 +352,16 @@
 
       })
 
-
-     
-
+      // allows user to press enter instead of pressing button 
+      $('#destinationInput').keypress(function(e){
+       
+        if(e.which == 13){//Enter key pressed
+          e.preventDefault()
+            $('#destinationCity').click();//Trigger search button click event
+        }
+      });
       
-
-
-
+      // display api results in the accordions
       function renderResults(resultsArry, cardContainer) {
 
         for (var i = 0; i < resultsArry.length; i++) {
@@ -310,9 +401,34 @@
           $(card).append(cardHeader, cardBody)
           $("#" + cardContainer).append(card)
         }
-      }
+      };
 
+      // reset application on click of start over button
+      $("#startOver").on("click", function(){
+        
+        // set result variables to empty / null for each api call
 
+        // to do is reset api results and weather results
+        // reset images to nothing
+        $("#todayIcon, #twoDayIcons, #threeDayIcons").attr("src", "");
+        $("#todayIcon, #twoDayIcons, #threeDayIcons").attr("alt", "");
+        // reset the html to empty
+        $("#today, #hiTempToday, #lowTempToday, #rainToday").empty()
+        // reset accordions to empty
+        $("#hotelResults, #foodResults, #attrResults, #dayTwo, #hiTempDayTwo, #lowTempDayTwo, #rainDayTwo, #dayThree, #hiTempDayThree, #lowTempDayThree, #rainDayThree").empty()
+
+        // reset the destination value to ""
+        $("#destinationInput").val("")
+        // clear the got to text
+        $("#selectedDestination").html("")
+        //  clear the destination in the weather container
+        $(".selectedDestination").text("")
+        // hide section2 
+        $("#section2").slideUp("slow"); // shows the results
+        // show the form
+        $("#destinationForm").slideDown("slow"); // hides the form
+        
+      })
     </script>
 
 </body>

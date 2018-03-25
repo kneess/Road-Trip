@@ -2,21 +2,23 @@
 .hide {
 	display: none;
 }
-.wrapper {
-	background: url(".images/drive-around-the-country.jpg");
+#startOver {
+	width: 100%;
 }
-#selectedDestination {
+#wxContainer {
+	width: 100%;
 	display: block;
-  width: 100%;
-	margin-bottom: 2%;
-	text-transform: capitalize;
 }
-#destination {
-    /* margin-top: 3%; */
-    font-family: 'Rancho', cursive;
+#selectedDestination, #destination {
+	display: block;
+ 	width: 100%;
+	margin-bottom: 2%;
+	font-family: 'Rancho', cursive;
+	text-transform: capitalize;
 	font-size: 50px;
-	text-align: center;
-	width: 100%	
+}
+.selectedDestination {
+		text-transform: capitalize;
 }
 .form-inline .input-group  {
 	width: 50%;
@@ -41,14 +43,15 @@
 }
 
 
-#weatherBox {
-	height: 100px;
+#weather {
+	max-width: 100%;
+	margin: 0 auto 2%;
+	min-height: 100px;
 	color: #495057;
     background-color: #fff;
     /* background-clip: padding-box; */
     border: 1px solid #ced4da;
 	border-radius: .25rem;
-	margin-bottom: 2%;
 }
 .vertRule{
 	border-right: 1px solid #ced4da;
