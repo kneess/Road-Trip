@@ -1,7 +1,114 @@
-.wrapper {
 
+.hide {
+	display: none;
 }
-#header{
-    background: url("../../images/jumbotron_bkg.png");
-    height: 200px;
+#startOver {
+	width: 100%;
+}
+#wxContainer {
+	width: 100%;
+	display: block;
+}
+#selectedDestination, #destination {
+	display: block;
+ 	width: 100%;
+	margin-bottom: 2%;
+	font-family: 'Rancho', cursive;
+	text-transform: capitalize;
+	font-size: 50px;
+}
+.selectedDestination {
+		text-transform: capitalize;
+}
+.form-inline .input-group  {
+	width: 50%;
+	margin: 0 auto;
+}
+
+#destinationInput{
+	border-bottom-right-radius: 0px;
+	border-top-right-radius: 0px;
+}
+#destinationCity {
+	border-bottom-left-radius: 0px;
+	border-top-left-radius: 0px;
+}
+#selectedLocation {
+	text-align: center;
+	font-family: 'Rancho', cursive;
+	font-size: 50px;
+}
+#weatherLoc {
+	text-align: center;
+}
+
+
+#weather {
+	max-width: 100%;
+	margin: 0 auto 2%;
+	min-height: 100px;
+	color: #495057;
+    background-color: #fff;
+    /* background-clip: padding-box; */
+    border: 1px solid #ced4da;
+	border-radius: .25rem;
+}
+.vertRule{
+	border-right: 1px solid #ced4da;
+	/* height: 25px; */
+}
+
+.card-wrap {
+	margin-bottom: 2%;
+}
+.card {
+	margin-bottom: 5px;
+}
+.top-card {
+	background-color: #2f59e4;
+}
+.card-body {
+	background: #fff;
+}
+
+.optionsBtn {
+	text-align: center; 
+	width:100%;
+	color: #fff !important;
+	text-transform: uppercase;
+}
+.optionsBtn:hover{
+	text-transform: uppercase;
+}
+.btn-link {
+	color: #2f59e4;
+	white-space: normal;
+}
+.optionsImg {
+	width:30px;
+	height:40px;
+	display:block;
+	margin: 0 auto;
+}
+
+.surprise {
+	width: 100%;
+	padding: 20px 0;
+	margin-bottom: 10px;
+	background-color: #f2702e;
+	border:1px solid #fa5502;
+}
+/* ============= */
+/* MEDIA QUERIES */
+/* ============= */
+
+@media (min-width: 768px) and (max-width: 991px) {
+	.hotel-img-wrapper {
+		overflow: hidden;
+	}
+
+	.hotel-img {
+		position: relative;
+		left: -50%;
+	}
 }

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Services</title>
+  <!-- Media Query -->
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <!-- Reset CSS -->
+  <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Rancho" rel="stylesheet">
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+
+<body>
+  <!--this is the wrapper that holds the background image-->
+  <div class="wrapper" align="center">
+    <!-- row 1 Header Image -->
+    <div class="card-wrap">
+      <div class="card">
+        <img class="card-img-top" src="./images/banner_1219x367.png" alt="Card image cap">
+      </div>
+    </div>
+    <div class="container">
+
+      <!-- row 2 weather info -->
+      <div id="wxContainer">
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-lg-12">
+            <h1 id="selectedLocation">Phoenix</h1>
+          </div>
+        </div>
+
+        <div class="row" id="weatherBox">
+
+          <div class="col-sm-3 col-md-3 vertRule ">
+            <div id="currentTemp">Current Temp</div>
+          </div>
+
+          <div class="col-sm-3 col-md-3 vertRule">
+            <div id="currentTemp">Tomorrows Forecast</div>
+          </div>
+
+          <div class="col-sm-3 col-md-3 vertRule">
+            <div id="currentTemp">2 Day Forecast</div>
+          </div>
+
+          <div class="col-sm-3 col-md-3 col-lg-3">
+            <div id="currentTemp">3 Day Forecast</div>
+          </div>
+
+        </div>
+      </div>
+
+
+
+
+      <div class="row" align="center">
+
+        <!-- row 3 column 1 HOTELS-->
+        <div class="col-sm-4 col-md-4 col-lg-4">
+          <div id="accordionHotel">
+            <div class="card top-card">
+              <div class="card-header" id="headingA">
+                <h5 class="mb-0">
+                  <button class="btn btn-link collapsed optionsBtn" data-toggle="collapse" data-target="#collapseHotel" aria-expanded="false"
+                    aria-controls="collapseHotel">
+                    <img src="./images/hotels.png" class="optionsImg"> Hotels
+
+                  </button>
+                </h5>
+              </div>
+              <div id="collapseHotel" class="collapse" aria-labelledby="headingHotel" data-parent="#accordionHotel">
+                <div class="card-body">
+                  <button class="btn btn-primary surprise">Surprise Me!</button>
+
+                  <div id="hotelResults">
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- row 4 column 1 FOOD-->
+        <div class="col-sm-4 col-md-4 col-lg-4">
+          <div id="accordionFood">
+            <div class="card top-card">
+              <div class="card-header" id="headingFood">
+                <h5 class="mb-0">
+                  <button class="btn btn-link collapsed optionsBtn" data-toggle="collapse" data-target="#collapseFood" aria-expanded="false"
+                    aria-controls="collapseFood">
+                    <img src="./images/food.png" class="optionsImg"> Food
+                  </button>
+                </h5>
+              </div>
+              <div id="collapseFood" class="collapse" aria-labelledby="headingFood" data-parent="#accordionFood">
+                <div class="card-body">
+                  <button class="btn btn-primary surprise">Surprise Me!!</button>
+
+                  <div id="foodResults">
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- row 5 column 1 THINGS TO DO-->
+        <div class=" col-sm-4 col-md-4 col-lg-4">
+          <div id="accordionAttractions">
+            <div class="card top-card">
+              <div class="card-header" id="headingAttractions">
+                <h5 class="mb-0">
+                  <button class="btn btn-link collapsed optionsBtn" data-toggle="collapse" data-target="#collapseAttractions" aria-expanded="false"
+                    aria-controls="collapseAttractions">
+                    <img src="./images/attractions.png" class="optionsImg"> Things to do
+                  </button>
+                </h5>
+              </div>
+              <div id="collapseAttractions" class="collapse" aria-labelledby="headingAttractions" data-parent="#accordionAttractions">
+                <div class="card-body">
+                  <button class="btn btn-primary surprise">Surprise Me!!</button>
+
+                  <div id="attrResults">
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- jQuery -->
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+
+    <!-- Moment.js Reference -->
+    <!-- <script src="http://momentjs.com/downloads/moment.js"></script>   -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script>
+      var hotelResults = [
+        {
+          name: "hotels Me",
+          address: "123 hotel rd someplace",
+          contact: "555-555-5555",
+          price: "$65 per night",
+          rating: "4.3",
+          description: "Oh what a lovely place to stay. Best a traveler can get.",
+          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1Tr1e-gbd-O47ZCZLmTbgkhR6NH1YUuIUCHVXzGOeSGdujo5",
+          hotelLink: "http://www.hotel.com"
+        },
+        {
+          name: "hotels You",
+          address: "123 hotel rd someplace",
+          contact: "555-555-5555",
+          price: "$65 per night",
+          rating: "4.3",
+          description: "oh what a lovely place to stay, best a travel can get",
+          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1Tr1e-gbd-O47ZCZLmTbgkhR6NH1YUuIUCHVXzGOeSGdujo5",
+          hotelLink: "http://www.hotel.com"
+        },
+        {
+          name: "hotels 3",
+          address: "123 hotel rd someplace",
+          contact: "555-555-5555",
+          price: "$65 per night",
+          rating: "4.3",
+          description: "oh what a lovely place to stay, best a travel can get",
+          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1Tr1e-gbd-O47ZCZLmTbgkhR6NH1YUuIUCHVXzGOeSGdujo5",
+          hotelLink: "http://www.hotel.com"
+        },
+        {
+          name: "hotels 4",
+          address: "123 hotel rd someplace",
+          contact: "555-555-5555",
+          price: "$65 per night",
+          rating: "4.3",
+          description: "oh what a lovely place to stay, best a travel can get",
+          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1Tr1e-gbd-O47ZCZLmTbgkhR6NH1YUuIUCHVXzGOeSGdujo5",
+          hotelLink: "http://www.hotel.com"
+        },
+        {
+          name: "hotels 5",
+          address: "123 hotel rd someplace",
+          contact: "555-555-5555",
+          price: "$65 per night",
+          rating: "4.3",
+          description: "oh what a lovely place to stay, best a travel can get",
+          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw1Tr1e-gbd-O47ZCZLmTbgkhR6NH1YUuIUCHVXzGOeSGdujo5",
+          hotelLink: "http://www.hotel.com"
+        }
+      ]
+
+      var foodResults = [
+        {
+          name: "taco bell",
+          address: "123 taco bell rd someplace",
+          contact: "555-555-5555",
+          price: "$$",
+          rating: "4.3",
+          description: "oh what a lovely place to stay, best a travel can get",
+          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9nhuJTsTt1kRIaNrr01_sqDTmrBx2mdMSxyVsoNTbD-6jO6Q7",
+          link: "http://www.hotel.com"
+        },
+        {
+          name: "McDonalds",
+          address: "123 donald rd someplace",
+          contact: "555-555-5555",
+          price: "$",
+          rating: "4.5",
+          description: "oh what a lovely place to stay, best a travel can get",
+          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHXl6PC90NpSbT4w-6f59xBsulUOrv6ZZXlg4hbSZ03SbQ-WUj",
+          link: "http://www.hotel.com"
+        },
+
+
+      ]
+
+      var attrResults = [
+        {
+          name: "worlds largest pistacio",
+          address: "123 pistacio rd someplace",
+          contact: "555-555-5555",
+          price: "$",
+          rating: "5",
+          description: "oh what a lovely place to stay, best a travel can get",
+          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOuIAFEvR7VhSxykz0VS9aPtaF5bP094eV03MaekuaxIM3_4ot",
+          link: "http://www.hotel.com"
+        }
+
+      ]
+
+      // pass in results array and string that is the name of the html element we are appending to
+      renderResults(hotelResults, "hotelResults");
+
+
+      // pass in results array and string that is the name of the html element we are appending to
+      renderResults(foodResults, "foodResults");
+
+
+      // pass in results array and string that is the name of the html element we are appending to
+      renderResults(attrResults, "attrResults");
+
+
+
+      function renderResults(resultsArry, cardContainer) {
+
+        for (var i = 0; i < resultsArry.length; i++) {
+
+          var card = $("<div>").addClass("card");
+          var cardHeader = ` 
+                    <div class="card-header" id="heading-${cardContainer}-${i}">
+                      <h5 class="mb-0">
+
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse-${cardContainer}-${i}" aria-expanded="true" aria-controls="collapse-${cardContainer}-${i}">
+                          ${resultsArry[i].name} | ${resultsArry[i].price}
+                        </button>
+
+                      </h5>
+                    </div>
+                  `
+
+          var cardBody = `
+                <div id="collapse-${cardContainer}-${i}" class="collapse" aria-labelledby="heading-${cardContainer}-${i}">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <p><strong>Address:</strong> ${resultsArry[i].address}</p>
+                        <p><strong>Contact:</strong> ${resultsArry[i].contact}</p>
+                        <p><strong>Rating:</strong> ${resultsArry[i].rating}</p>
+                       
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hotel-img-wrapper">
+                          <img class="hotel-img" src="${resultsArry[i].image}">
+                          <p>${resultsArry[i].description}</p>
+                          <a href="${resultsArry[i].link}">Learn More</a>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                `
+          $(card).append(cardHeader, cardBody)
+          $("#" + cardContainer).append(card)
+        }
+      }
+
+
+    </script>
+</body>
+
+</html>
