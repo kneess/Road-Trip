@@ -105,7 +105,7 @@
 
         </div>
           
-        <div class="row">
+        <div class="row" id="accordian-wrap">
           <!-- row 3 column 1 HOTELS-->
           <div class="col-sm-4 col-md-4 col-lg-4">
             <div id="accordionHotel">
@@ -185,6 +185,8 @@
             </div>
           </div>
         </div>
+        <div class="row hide" id="finalTripSelection"></div>
+        <button class="btn btn-success" id="finish">Continue</button>
         <button class="btn btn-warning" id="startOver">Start Over</button>
       </div>
 
@@ -214,6 +216,8 @@
       // api result variables that currently hold dummy data, results for each
       // api call excluding weather should be formatted in an array of object 
       // to be properly displayed on the page
+
+      // var hotelResults;
       var hotelResults = [
         {
           name: "hotels Me",
@@ -363,10 +367,13 @@
       
       // display api results in the accordions
       function renderResults(resultsArry, cardContainer) {
-
+        $("finalTripSlection").empty();
+        $("finalTripSlection").addClass("hide")
+        $("accordian-wrap").removeClass("hide")
         for (var i = 0; i < resultsArry.length; i++) {
 
           var card = $("<div>").addClass("card");
+          card.attr("data-select", i)
           var cardHeader = ` 
                     <div class="card-header" id="heading-${cardContainer}-${i}">
                       <h5 class="mb-0">
@@ -393,6 +400,7 @@
                           <img class="hotel-img" src="${resultsArry[i].image}">
                           <p>${resultsArry[i].description}</p>
                           <a href="${resultsArry[i].link}">Learn More</a>
+                          <button class="btn btn-primary trip-option cardContainer" data-option="${cardContainer}-${i}">Select This Option</button>
                         </div>
                       </div>
                     </div>
@@ -405,7 +413,8 @@
 
       // reset application on click of start over button
       $("#startOver").on("click", function(){
-        
+        $("finalTripSlection").empty()
+        $("finalTripSlection, #accordian-wrap").addClass("hide")
         // set result variables to empty / null for each api call
 
         // to do is reset api results and weather results
@@ -429,6 +438,43 @@
         $("#destinationForm").slideDown("slow"); // hides the form
         
       })
+
+      $(document).on("click", ".trip-option", function(){
+        var selectedOption = $(this).attr("data-option")
+        console.log(selectedOption)
+        var optionKey = selectedOption.split("-")
+        switch(optionKey[0]){
+          case "hotelResults":
+          userTripSelection.hotel = parseInt(optionKey[1])
+          case "foodResults":
+          userTripSelection.food = parseInt(optionKey[1])
+          case "attrresults":
+          userTripSelection.attraction = parseInt(optionKey[1])
+        }
+
+      })
+
+      $("#finish").on("click", function(){
+        // remove the accordians
+        // accordian-wrap .addClass hide    
+        // hide continue button
+        
+
+        // display final trip results
+        // display result in finalTripSelection
+          // create a div with class  col-sm-12 col-md-4 col-lg-4 for each result
+          //  give each div a header i.e Food , hotel, ...
+        // remove classhide from finalTripSelection
+        // show the suprise me if any 
+        // show the userTripSelection if any
+      })
+
+      var userTripSelection = {
+        hotel: null,
+        food: null,
+        attraction: null
+      }
+      console.log(userTripSelection)
     </script>
 
 </body>

@@ -2,8 +2,12 @@
 .hide {
 	display: none;
 }
-#startOver {
+#finish {
+	margin: 2% 0 1%;
+}
+#startOver, #finish {
 	width: 100%;
+	color: #fff;
 }
 #wxContainer {
 	width: 100%;
