@@ -1,68 +1,240 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Road Trip</title>
-    <!-- Media Query -->
-    <meta  name="viewport" content="width=device-width,initial-scale=1">
-    <!-- Reset CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!-- Google Fonts -->
-    <!-- <link href="https://fonts.googleapis.com/css?family=Flavors" rel="stylesheet"> -->
-    <!-- My CSS --> 
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css"> 
+  <meta charset="UTF-8">
+  <title>Road Trip</title>
+  <!-- Media Query -->
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <link rel="icon" href="./images/favicon.gif" type="image/x-icon">
+  <!-- Reset CSS -->
+  <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+
+  <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/themes/flick/jquery-ui.css" />
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Rancho" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 </head>
+
 <body>
-    <!--this is the wrapper that holds the background image-->
-    <div class="wrapper" align="center">
-        <div class="container">
-            <!-- row 1 Jumbotron Header-->    
+  <!--this is the wrapper that holds the background image-->
+  <div id="wrapper" align="center">
+    <!-- row 1 Header Image -->
+    <div class="card-wrap">
+      <div class="card">
+        <img class="card-img-top" src="./images/banner_1219x367.png" alt="Card image cap">
+      </div>
+    </div>
+    <div class="container">
+      <!-- row 2 Form-->
+      <div id="destinationForm" class="hide" align="center">
+        <h1 id="destination">Where would you like to go?</h1>
+          <form class="form-inline">
+            <p id="inputMsg"></p>
+            <div class="form-group input-group desitinationWrap">
+             <input name="ff_nm_from[]" type="text" class="form-control ff_elem" id="destinationInput" placeholder="Destination City (city, state, country)" required value="">
+            
+             <span class="input-group-btn">
+                  <button class="btn btn-success" id="destinationCity" type="button">Go!</button>
+             </span>
+          </div>
+          </form>
+      </div>
+     
+      <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+      <!-- ADDED CODE FROM SERVICES PAGE, We started with two HTML files and decided to put them together as one page--> 
+      <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+      <div class="hide" align="center" id="section2">
+
+        <!-- row 2 weather info -->
+        <div id="wxContainer">
             <div class="row">
-                    <div class="card">
-                        <div class="card-body">
-                        </div>
-                        <img class="card-img-bottom" src="./images/jumbotron_bkg.png" alt="Card image cap">
-                    </div>    
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <h2 id="selectedDestination"></h2>
+              </div>
+            </div>
+            <!--  wx container  -->
+            <div class="row" id="weather">
+              <div id="currentTempWrap" class="col-sm-3 col-md-3 vertRule weatherWrap">
+                <p>Current  Temp in <span class="selectedDestination"></span></p>
+                <hr>
+                <div>Now!</div>
+                <img id="todayIcon1" src="" class="weatherI">
+                <div id="today1"></div>
+                <div id="currentTemp"></div>
+              </div>
+              <div id="dayOneForecast" class="col-sm-3 col-md-3 vertRule weatherWrap">
+               <p>Todays Forecast in <span class="selectedDestination"></span></p>
+                <hr>
+                <div id="dayDate"></div>
+                <img id="todayIcon" src="" alt="" class="weatherI">
+                <div id="today"></div>
+                <div id="hiTempToday"></div>
+                <div id="lowTempToday"></div>
+                <!-- <div id="rainToday"></div> -->
+              </div>
+              <div id="dayTwoForecast" class="col-sm-3 col-md-3 vertRule weatherWrap">
+                <p>2 Day Forecast for <span class="selectedDestination"></span></p>
+                <hr>
+                <div id="dayTwoDate"></div>
+                <img id="twoDayIcons" src="" alt="" class="weatherI">
+                <div id="twoDescrip"></div>
+                <div id="dayTwo"></div>
+                <div id="hiTempDayTwo"></div>
+                <div id="lowTempDayTwo"></div>
+                <div id="rainDayTwo"></div>
+              </div>
+              <div id="dayThreeForecast" class="col-sm-3 col-md-3 weatherWrap">
+                <p>3 Day Forecast for <span class="selectedDestination"></span></p>
+                <hr>
+                <div id="daythreeDate"></div>
+                <img id="ThreeDayIcons" class="weatherI">
+                <div id="threeDescrip"></div>
+                <div id="dayThree"></div>
+                <div id="hiTempDayThree"></div>
+                <div id="lowTempDayThree"></div>
+                <div id="rainDayThree"></div>
+              </div>
             </div>
         </div>
-            <!-- row 2 -->
-            <div class="row">
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    <form>
-                        <div class="form-group">
-                            <label for="formGroupExampleInput">Where would you like to go?</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Destination City">
-                        </div>
-                    </form>
+          
+        <div class="row" id="accordian-wrap">
+          <!-- row 3 column 1 HOTELS-->
+          <div class="col-sm-4 col-md-4 col-lg-4">
+            <div id="accordionHotel">
+              <div class="card top-card">
+                <div class="card-header" id="headingA">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link collapsed optionsBtn" data-toggle="collapse" data-target="#collapseHotel" aria-expanded="false"
+                      aria-controls="collapseHotel">
+                      <img src="./images/hotels.png" class="optionsImg"> Hotels
+
+                    </button>
+                  </h5>
                 </div>
-            </div>
-            <!-- row 3 -->
-            <div class="row">
-                <div class="col-sm-12 col-md-12 col-lg-12">
+                <div id="collapseHotel" class="collapse" aria-labelledby="headingHotel" data-parent="#accordionHotel">
+                  <div class="card-body">
+                    <button class="btn btn-primary surprise" id="surpriseHotel">Surprise Me!</button>
+
+                    <div id="hotelResults">
+
                     </div>
-                </div>
-                <div class="row justify-content-around">
-                  <div class="col-4">
-                        <button class="btn btn-primary" id="destinationCity" type="button">Browse Items</button>
-                  </div>
-                  <div class="col-4">
-                        <button class="btn btn-primary" id="destinationCity" type="button">Surprise Me</button>
+
                   </div>
                 </div>
-   
-                  </div>
-                </div>
-                </div>
+              </div>
             </div>
-                
+          </div>
+
+          <!-- row 4 column 1 FOOD-->
+          <div class="col-sm-4 col-md-4 col-lg-4">
+            <div id="accordionFood">
+              <div class="card top-card">
+                <div class="card-header" id="headingFood">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link collapsed optionsBtn" data-toggle="collapse" data-target="#collapseFood" aria-expanded="false"
+                      aria-controls="collapseFood">
+                      <img src="./images/food.png" class="optionsImg"> Food
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapseFood" class="collapse" aria-labelledby="headingFood" data-parent="#accordionFood">
+                  <div class="card-body">
+                    <button class="btn btn-primary surprise" id="surpriseFood">Surprise Me!!</button>
+
+                    <div id="foodResults">
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- row 5 column 1 THINGS TO DO-->
+          <div class=" col-sm-4 col-md-4 col-lg-4">
+            <div id="accordionAttractions">
+              <div class="card top-card">
+                <div class="card-header" id="headingAttractions">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link collapsed optionsBtn" data-toggle="collapse" data-target="#collapseAttractions" aria-expanded="false"
+                      aria-controls="collapseAttractions">
+                      <img src="./images/attractions.png" class="optionsImg"> Things to do
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapseAttractions" class="collapse" aria-labelledby="headingAttractions" data-parent="#accordionAttractions">
+                  <div class="card-body">
+                    <button class="btn btn-primary surprise" id="surpriseAttr">Surprise Me!!</button>
+
+                    <div id="attrResults">
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
-
-
+        <div class="row hide" id="finalTripSelection" align="center"></div>
+        <button class="btn btn-success" id="finish">Show Trip Itinerary</button>
+        <button class="btn btn-warning" id="startOver">Start Over</button>
+      </div>
 
     </div>
+
+  </div> <!-- closing div for wrapper -->
+
+
+    <!-- Modal- Tried to add a "Loading" Modal, but it's stuck and won't go away! -->
+  <!-- <div id="loadingModal" class="modal fade" role="dialog">
+    <div class="modal-dialog"> -->
+
+      <!-- Modal content-->
+      <!-- <div class="modal-content">
+        <div class="modal-body" align="center">
+          <h1>Loading....</h1>
+          <img src="https://beingtina.com/wp-content/uploads/2016/07/animat-road-trip.gif" alt="loading">
+          <h2>a great trip is on the way!</h2>
+          
+        </div>
+      </div>
+
+    </div>
+  </div> -->
+
+    <!-- jQuery -->
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+      
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+
+    <!-- Moment.js Reference -->
+    <!-- <script src="http://momentjs.com/downloads/moment.js"></script>   -->
+<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+<script src="test/assets/javascript/javascript.js"></script>
+
 </body>
+
 </html>
->>>>>>> abc4698200f7cb87798336f8bd96aa81367c7219
