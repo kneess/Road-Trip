@@ -1,3 +1,15 @@
+  //Adding firebase to save data searched
+var config = {
+  apiKey: "AIzaSyC-0M6CajcPpNN_hK0JNTD-xAR_DyaLlMc",
+  authDomain: "group-project-1-92488.firebaseapp.com",
+  databaseURL: "https://group-project-1-92488.firebaseio.com",
+  projectId: "group-project-1-92488",
+  storageBucket: "",
+  messagingSenderId: "112559700724"
+};
+firebase.initializeApp(config);
+
+var database = firebase.database();
   // when scripts runs animate the form to show
   $("#destinationForm").slideDown("slow");
 
@@ -91,6 +103,10 @@
       // just the city name
       var destination = $("#destinationInput").val().trim();
       destination = destination.toLowerCase();
+      var destinationSearches = {
+        Place: destination
+      }
+      database.ref().push(destinationSearches);
       //console.log(destination);
       
       // api calls here
@@ -480,6 +496,10 @@
   $(document).on("click", ".trip-option", function(){
     var selectedOption = $(this).attr("data-option")
     // console.log(selectedOption)
+    var options = {
+      ChosenOptions: selectedOption
+    }
+    database.ref().push(options);
     var optionKey = selectedOption.split("-");
     // console.log("selected option key", optionKey[0]);
     // console.log("selected option value", optionKey[1]);
