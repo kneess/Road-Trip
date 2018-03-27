@@ -11,24 +11,57 @@
         <input id="enterLocation" type="text" placeholder="search">
         <button id="submitLocation">submit</button>
     </div>
+    <div>
+        <table id="locationsSearched" class="table">
+        <th>Locations Searched</th>
+        </table>
+    </div>
     <div id="results">Results go here</div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
     <script type="text/javascript">
 
 
+        //Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDR4yN1eVVbyiH3EEicEerbSgN_5ZqyQuY",
+            authDomain: "group-project-go-1521247325718.firebaseapp.com",
+            databaseURL: "https://group-project-go-1521247325718.firebaseio.com",
+            projectId: "group-project-go-1521247325718",
+            storageBucket: "group-project-go-1521247325718.appspot.com",
+            messagingSenderId: "456213027551"
+        };
+        firebase.initializeApp(config);
 
+        var database = firebase.database();
+        
+        var apikey = "AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
+        var searchCounter = [];
         $("#submitLocation").on("click", function () {
-            var location = $("#enterLocation").val().trim();
+
+
+            var places = $("#enterLocation").val().trim();
+
             $("#enterLocation").val("");
-            console.log(location);
-            var apikey = "AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4";
-            var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=museums+in+" + location + "&key=" + apikey;
+            console.log(places);
+
+            var locations = {
+                place: places
+            };
+            database.ref().push(locations);
+            searchCounter.push(locations)
+            console.log(searchCounter);
+
+
+            var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=museums+in+" + places + "&key=" + apikey;
+            console.log(queryURL);
 
             $.ajax({
-                url: queryURL,
+                url:'https://cors-anywhere.herokuapp.com/'+ queryURL,
                 method: "GET"
+
             }).then(function (response) {
-                console.log(response.results);
+                console.log(response);
                 var results = response.results;
                 for (var i = 0; i < results.length; i++) {
                     var newDiv = $("<div>");
@@ -44,46 +77,64 @@
                     newDiv.append(p2);
                     $("#results").append(newDiv);
                 }
-
-                $("#results").on("click", ".museumClick", function () {
-
-                    var placeid = $(this).attr("place-id");
-                    console.log(placeid);
-                    $(".properties").hide();
-
-                    var queryURL2 = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeid + "&key=" + apikey;
-
-                    $.ajax({
-                        url: queryURL2,
-                        method: "GET"
-                    }).then(function (response2) {
-                        console.log(response2);
-                        var results2 = response2.result;
-                        var photoreference = results2.reference;
-                        var url = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference='+photoreference+'&key'+apikey;
-                        console.log(photoreference);
-                        //console.log(results2.formatted_phone_number);
-                        var newDiv = $("<div>");
-                        newDiv.addClass("properties2");
-                        var p = $("<p>").text("Museum Name: " + results2.name);
-                        var p1 = $("<p>").text("Address: " + results2.formatted_address);
-                        var p2 = $("<p>").text("Phone Number: " + results2.formatted_phone_number);
-                        var p3 = $("<a>").text("Website: "+ results2.website);
-                        p3.attr("href", results2.website)
-                        var img = $("<img>");
-                        img.attr("src", url);
-                        newDiv.append(p);
-                        newDiv.append(p1);
-                        newDiv.append(p2);
-                        newDiv.append(p3);
-                        newDiv.append(img);
-                        $("#results").append(newDiv);
-
-                    })
-
-                })
             });
         });
+
+database.ref().on("child_added", function (childSnapshot, prevChildKey) {
+    var dblocation = childSnapshot.val().place;
+    searchCounter.push(dblocation);
+    console.log(searchCounter);
+        console.log("thisisdb:", dblocation)
+    //$("#locationsSearched").append(searchCounter);
+
+});
+
+        $("#results").on("click", ".museumClick", function () {
+
+            var placeid = $(this).attr("place-id");
+            console.log(placeid);
+            $(".properties").hide();
+
+            var clicked = $(this).text();
+            console.log(clicked);
+
+            var hotelChosen = {
+                hotel: clicked
+            }
+            database.ref().push(hotelChosen);
+
+            var queryURL2 = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeid + "&key=" + apikey;
+
+            $.ajax({
+                url:'https://cors-anywhere.herokuapp.com/' + queryURL2,
+                method: "GET"
+            }).then(function (response2) {
+                console.log(response2);
+                var results2 = response2.result;
+                var photoreference = results2.photos[0].photo_reference;
+                var url = 'https://maps.googleapis.com/maps/api/place/photo?photoreference=' + photoreference + '&sensor=false&maxheight=400&maxwidth=400&key=' + apikey;
+                console.log(photoreference);
+                //console.log(results2.formatted_phone_number);
+                var newDiv = $("<div>");
+                newDiv.addClass("properties2");
+                var p = $("<p>").text("Museum Name: " + results2.name);
+                var p1 = $("<p>").text("Address: " + results2.formatted_address);
+                var p2 = $("<p>").text("Phone Number: " + results2.formatted_phone_number);
+                var p3 = $("<a>").text("Website: " + results2.website);
+                p3.attr("href", results2.website)
+                var img = $("<img>");
+                img.attr("src", url);
+                newDiv.append(p);
+                newDiv.append(p1);
+                newDiv.append(p2);
+                newDiv.append(p3);
+                newDiv.append(img);
+                $("#results").append(newDiv);
+
+            })
+
+        })
+
 
 
     </script>
