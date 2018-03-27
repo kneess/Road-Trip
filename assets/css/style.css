@@ -1,7 +1,225 @@
-.wrapper {
+body {
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 22px;
+	background: url(../../images/wormz.png) fixed;
+  height: 100vh;
+}
+#finalTripSelection {
+  margin: 0 auto;
+  text-align: center;
+  max-width: 100%;
+}
+.noSelection {
+  text-align: center;
+  width: 100%;
+  padding: 5% 0;
+  font-weight: 600;
+  text-decoration: underline;
+  color: #000;
+}
+#loadingModal h1, h2{
+	color: #4ed4e0;
+}
+#loadingModal img {
+	width: 75%;
+}
+.panel-default {
+	width: 33%;
+  margin: 0 auto;
+  padding: 10px 0;
 
 }
-#header{
-    background: url("../../images/jumbotron_bkg.png");
-    height: 200px;
+.panel-body {
+  width: 100%;
+  border: 1px solid #ced4da;
+  padding: 20px 0;
+  background-color: #fff;
+  border-radius: .25rem;
+  margin: 0 auto;
+}
+.btn, input, p {
+	font-size: 22px;
+}
+::-webkit-input-placeholder {
+	font-size: 22px;
+}
+::-moz-placeholder {
+	font-size: 22px;
+} 
+:-ms-input-placeholder {
+	font-size: 22px;
+} 
+:-moz-placeholder {
+	font-size: 22px;
+}
+.trip-option {
+	width: 100%;
+	margin-top:10px;
+}
+.prpl {
+	color: #915789;
+}
+p {
+	color: #4ed4e0;
+	font-weight: 600;
+}
+.hide {
+	display: none;
+}
+.weatherWrap {
+	padding: 15px 0;
+}
+.weatherI {
+	max-width: 35%;
+	display: block;
+}
+.temp {
+	color: green;
+}
+.up {
+	color: red;
+}
+.down {
+	color: blue;
+}
+.hotel-img {
+	max-width: 100%;
+}
+#inputMsg {
+	display: block;
+	color: red;
+	width: 100%;
+}
+#finish {
+	margin: 2% 0 1%;
+}
+#startOver, #finish {
+	width: 100%;
+	color: #fff;
+}
+#wxContainer {
+	width: 100%;
+	display: block;
+}
+#selectedDestination, #destination {
+	display: block;
+ 	width: 100%;
+	margin-bottom: 2%;
+	font-family: 'Rancho', cursive;
+	text-transform: capitalize;
+	font-size: 50px;
+	color:#000;
+}
+.selectedDestination {
+		text-transform: capitalize;
+}
+.form-inline .input-group  {
+	width: 50%;
+	margin: 0 auto;
+}
+
+#destinationInput{
+	border-bottom-right-radius: 0px;
+	border-top-right-radius: 0px;
+	padding: 11px;
+}
+#destinationCity {
+	border-bottom-left-radius: 0px;
+	border-top-left-radius: 0px;
+}
+#selectedLocation {
+	text-align: center;
+	font-family: 'Rancho', cursive;
+	font-size: 50px;
+}
+#weatherLoc {
+	text-align: center;
+}
+
+
+#weather {
+	max-width: 100%;
+	margin: 0 auto 2%;
+	min-height: 100px;
+	color: #495057;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+	border-radius: .25rem;
+}
+.vertRule{
+	border-right: 1px solid #ced4da;
+	border-bottom: none;
+}
+
+.card-wrap {
+	margin-bottom: 2%;
+}
+.card {
+	margin-bottom: 5px;
+}
+.top-card {
+	background-color: #2f59e4;
+}
+.card-body {
+	background: #fff;
+}
+
+.optionsBtn {
+	text-align: center; 
+	width:100%;
+	color: #fff !important;
+	text-transform: uppercase;
+}
+.optionsBtn:hover{
+	text-transform: uppercase;
+}
+.btn-link {
+	color: #2f59e4;
+	white-space: normal;
+}
+.optionsImg {
+	width:30px;
+	height:40px;
+	display:block;
+	margin: 0 auto;
+}
+
+.surprise {
+	width: 100%;
+	padding: 20px 0;
+	margin-bottom: 10px;
+	background-color: #f2702e;
+	border:1px solid #fa5502;
+}
+/* ============= */
+/* MEDIA QUERIES */
+/* ============= */
+@media only screen and (max-width: 40em) { 
+	.vertRule{
+		border-right: none;
+		border-bottom: 1px solid #ced4da;
+	}
+	.form-inline .input-group {
+    width: 100%;
+    margin: 0 auto;
+	}
+	.panel-default {
+		width: 100%;
+	  margin: 0 auto;
+	  padding: 10px 0;
+	}
+	#selectedDestination, #destination {
+		color:#000;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+	.hotel-img-wrapper {
+		overflow: hidden;
+	}
+
+	.hotel-img {
+		position: relative;
+		left: -50%;
+	}
 }
