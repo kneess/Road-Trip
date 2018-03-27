@@ -7,18 +7,22 @@
   <!-- Media Query -->
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
+
   <link rel="icon" href="./images/favicon.gif" type="image/x-icon">
   <!-- Reset CSS -->
   <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 
   <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/themes/flick/jquery-ui.css" />
 
+
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
     crossorigin="anonymous">
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Rancho" rel="stylesheet">
+
   <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+
 
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -39,10 +43,12 @@
       <div id="destinationForm" class="hide" align="center">
         <h1 id="destination">Where would you like to go?</h1>
           <form class="form-inline">
+
             <p id="inputMsg"></p>
             <div class="form-group input-group desitinationWrap">
              <input name="ff_nm_from[]" type="text" class="form-control ff_elem" id="destinationInput" placeholder="Destination City (city, state, country)" required value="">
             
+
              <span class="input-group-btn">
                   <button class="btn btn-success" id="destinationCity" type="button">Go!</button>
              </span>
@@ -50,9 +56,11 @@
           </form>
       </div>
      
+
       <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
       <!-- ADDED CODE FROM SERVICES PAGE, We started with two HTML files and decided to put them together as one page--> 
       <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
 
       <div class="hide" align="center" id="section2">
 
@@ -63,6 +71,7 @@
                 <h2 id="selectedDestination"></h2>
               </div>
             </div>
+
             <!--  wx container  -->
             <div class="row" id="weather">
               <div id="currentTempWrap" class="col-sm-3 col-md-3 vertRule weatherWrap">
@@ -105,7 +114,9 @@
                 <div id="lowTempDayThree"></div>
                 <div id="rainDayThree"></div>
               </div>
+
             </div>
+
         </div>
           
         <div class="row" id="accordian-wrap">
@@ -124,7 +135,9 @@
                 </div>
                 <div id="collapseHotel" class="collapse" aria-labelledby="headingHotel" data-parent="#accordionHotel">
                   <div class="card-body">
+
                     <button class="btn btn-primary surprise" id="surpriseHotel">Surprise Me!</button>
+
 
                     <div id="hotelResults">
 
@@ -150,6 +163,7 @@
                 </div>
                 <div id="collapseFood" class="collapse" aria-labelledby="headingFood" data-parent="#accordionFood">
                   <div class="card-body">
+
                     <button class="btn btn-primary surprise" id="surpriseFood">Surprise Me!!</button>
 
                     <div id="foodResults">
@@ -172,6 +186,7 @@
                       <img src="./images/attractions.png" class="optionsImg"> Things to do
                     </button>
                   </h5>
+
                 </div>
                 <div id="collapseAttractions" class="collapse" aria-labelledby="headingAttractions" data-parent="#accordionAttractions">
                   <div class="card-body">
@@ -183,11 +198,13 @@
 
                   </div>
                 </div>
+
               </div>
 
             </div>
           </div>
         </div>
+
         <div class="row hide" id="finalTripSelection" align="center"></div>
         <button class="btn btn-success" id="finish">Show Trip Itinerary</button>
         <button class="btn btn-warning" id="startOver">Start Over</button>
@@ -196,6 +213,9 @@
     </div>
 
   </div> <!-- closing div for wrapper -->
+
+
+    </div>
 
 
     <!-- Modal- Tried to add a "Loading" Modal, but it's stuck and won't go away! -->
@@ -234,6 +254,7 @@
     <!-- <script src="http://momentjs.com/downloads/moment.js"></script>   -->
 <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 <script src="test/assets/javascript/javascript.js"></script>
+
 
 </body>
 
