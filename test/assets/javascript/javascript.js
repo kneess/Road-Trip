@@ -5,7 +5,8 @@
   var currentCity;
   var userLocationInfo;
 
-  // Kathy mentioned to her tutor that we eventually would like to add a mapping feature to our app.  She showed her how to use this api to grab the user's location information.
+  // Kathy mentioned to her tutor that we eventually would like to add a mapping feature to our app.  
+  // The tutor showed her how to use this api to grab the user's location information.
   // The tutor also showed us this faster way to make an ajax call.
   $.get("https://freegeoip.net/json/", function(res){
     userLocationInfo = res;
