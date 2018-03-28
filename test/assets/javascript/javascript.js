@@ -256,7 +256,7 @@
   }
 
   // hotel results
-  var apiKey = "&key=AIzaSyCx8gqMHIV2OLrVEa-9o5xU34SzJD6W3Js"
+  var apiKey = "AIzaSyBEwsAZvUV056HTNXcoCGy8vUXXYv-VLZ8"
   function getHotels(destination){
     $("#loadingModal").modal("show");
     var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=hotel+in+" + destination + apiKey;
