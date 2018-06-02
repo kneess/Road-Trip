@@ -6,15 +6,17 @@ Have you ever been planning a vacation and realized you really don't like planni
 
 ![Road-Trip Search Results](/images/results.JPG)
 
-![Road-Trip Hotel Results](/images/hotelResults.JPG)
+![Road-Trip Hotel Results](/images/hotelResult.JPG)
 
 ![Road-Trip Quick Itinerary](/images/itinerary.JPG)
 
 This app was Created and Maintained by:
+--------------------------------------------
 Kathy Giebelhausen- HTML, CSS, Photoshop
 Anibal Campos- Java Script and APIs
 Zane Pence- Java Script and APIs
 Becky McClain- Java Script and APIs
 
-Acknowledgments
+Acknowledgments:
+----------------------
 Amber Burroughs- Thank you for all your help!
