@@ -1,10 +1,12 @@
+
   // when scripts runs animate the form to show
   $("#destinationForm").slideDown("slow");
 
   var currentCity;
   var userLocationInfo;
 
-  // Kathy mentioned to her tutor that we eventually would like to add a mapping feature to our app.  She showed her how to use this api to grab the user's location information.
+  // Kathy mentioned to her tutor that we eventually would like to add a mapping feature to our app.  
+  // The tutor showed her how to use this api to grab the user's location information.
   // The tutor also showed us this faster way to make an ajax call.
   $.get("https://freegeoip.net/json/", function(res){
     userLocationInfo = res;
@@ -132,13 +134,13 @@
   // get weather forecast for today
   function getCurrentWeather(){
 
-    $.get(`http://api.openweathermap.org/data/2.5/weather?q=${destinationInfo.city},${destinationInfo.countryCode}&units=imperial&appid=b92bd67b1bf224690009c4ed1fc0e080`, function(results){
+    $.get(`https://api.openweathermap.org/data/2.5/weather?q=${destinationInfo.city},${destinationInfo.countryCode}&units=imperial&appid=b92bd67b1bf224690009c4ed1fc0e080`, function(results){
 
         // console.log("weather now", results);
         //console.log("testttt", results.weather[0].main);
 
         $("#todayIcon1, #todayIcon").attr("src", "");
-        $("#todayIcon1, #todayIcon").attr("src", `http://openweathermap.org/img/w/${results.weather[0].icon}.png`);
+        $("#todayIcon1, #todayIcon").attr("src", `https://openweathermap.org/img/w/${results.weather[0].icon}.png`);
         var date = moment(new Date()).format("MM/DD/YYYY");
         $("#dayDate").text(date);
 
@@ -160,7 +162,7 @@
 
   // forcast for day 2 and 3
   function getFutureWeather(){
-    $.get(`http://api.openweathermap.org/data/2.5/forecast?q=${destinationInfo.city},${destinationInfo.countryCode}&units=imperial&appid=b92bd67b1bf224690009c4ed1fc0e080`, function(results){
+    $.get(`https://api.openweathermap.org/data/2.5/forecast?q=${destinationInfo.city},${destinationInfo.countryCode}&units=imperial&appid=b92bd67b1bf224690009c4ed1fc0e080`, function(results){
         //console.log("weather", results.list)
 
        // every 8 results in the array is a day
@@ -203,7 +205,7 @@
         $("#dayTwoDate").html(newDate2);
 
         $("#twoDayIcons").attr("src", "");
-        $("#twoDayIcons").attr("src", `http://openweathermap.org/img/w/${day2Weather[0].weather[0].icon}.png`);
+        $("#twoDayIcons").attr("src", `https://openweathermap.org/img/w/${day2Weather[0].weather[0].icon}.png`);
 
         $("#twoDescrip").text(day2Weather[0].weather[0].main);
 
@@ -234,7 +236,7 @@
         $("#daythreeDate").html(newDate3);
 
         $("#ThreeDayIcons").attr("src", "");
-        $("#ThreeDayIcons").attr("src", `http://openweathermap.org/img/w/${day3Weather[0].weather[0].icon}.png`);
+        $("#ThreeDayIcons").attr("src", `https://openweathermap.org/img/w/${day3Weather[0].weather[0].icon}.png`);
 
         $("#threeDescrip").text(day3Weather[0].weather[0].main);
 
@@ -254,7 +256,7 @@
   }
 
   // hotel results
-  var apiKey = "&key=AIzaSyCNDmPqZOjXBhXXOgsRpnFMEELte5ssmi4"
+  var apiKey = "&key=AIzaSyBEwsAZvUV056HTNXcoCGy8vUXXYv-VLZ8";
   function getHotels(destination){
     $("#loadingModal").modal("show");
     var queryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=hotel+in+" + destination + apiKey;
