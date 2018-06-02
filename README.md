@@ -10,12 +10,12 @@ Have you ever been planning a vacation and realized you really don't like planni
 
 ![Road-Trip Quick Itinerary](/images/itinerary.JPG)
 
-This app was Created and Maintained by: |
+This app was Created and Maintained by:
 --------------------------------------------
-Kathy Giebelhausen | HTML, CSS, Photoshop
-Anibal Campos | Java Script and APIs
-Zane Pence | Java Script and APIs
-Becky McClain | Java Script and APIs
+* Kathy Giebelhausen- HTML, CSS, Photoshop
+* Anibal Campos- Java Script and APIs
+* Zane Pence- Java Script and APIs
+* Becky McClain- Java Script and APIs
 
 Acknowledgments:
 ----------------------
