@@ -1,3 +1,4 @@
+
   // when scripts runs animate the form to show
   $("#destinationForm").slideDown("slow");
 
